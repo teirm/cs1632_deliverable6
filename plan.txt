@@ -1,0 +1,8 @@
+08 APR 2016
+-------------------------------------------------------------
+Consider present threat model
+Pick three or four threats to test against
+test against these threats
+
+Find a way to conduct a DOS attack and see how many threads
+the group server can handle
