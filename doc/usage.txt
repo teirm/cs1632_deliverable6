@@ -1,0 +1,45 @@
+FileSharing Usage Information
+
+USAGE:
+ To start Group Server: java -cp .:path/to/bcprov-jdk15on-154.jar RunGroupServer [(optional) port number]
+ When the group server is first started, there are no users or groups. Since 
+ there must be an administer of the system, the user is prompted via the console
+ to enter a username. This name becomes the first user and is a member of the
+ ADMIN group.  Also, no groups exist.  The group server will by default
+ run on port 8765, but a custom port can be passed as the first command line
+ argument.
+
+ To start the File Server: java -cp .:path/to/bcprov-jdk15on-154.jar RunFileServer <publickey file> [(optional) port number]
+ The file server will create a shared_files inside the working directory if one 
+ does not exist. The file server is now online.  The file server will by default
+ run on port 4321, but a custom port can be passed as the second command line
+ argument. The first command line argument is the public key file outputted by 
+ the Group Server.
+
+ To reset the File server completely, delete FileList.bin, the public key file, and the shared_files 
+ directory.
+ To reset the Group Server, delete UserList.bin and the public key file, publickey.txt.
+ 
+ Note that this implementation supports server side directories.
+
+ To start Client Application: java -cp .:path/to/bcprov-jdk15on-154.jar ClientApplication <user name> [(optional) [<group server name> <group server port number> <group server key file>] [<file server name> <file server port number> <file server key file>] ]
+ The user name is required. When using the optional arguments, the either 
+ specify just the group server name, group server port, and group server key file or
+ specify all six optional arguments. A key file must contain the RSA public key of 
+ the particular server. The user will be prompted for the group server's name, port 
+ number, and key file at the beginning of the text-based program if the user did not enter 
+ them as command line arguments. Once the group server, port number, and key file are 
+ obtained, the client application attempts to connect to the group server 
+ and obtain the user's token. The user will be asked if he wants to 
+ connect to the file server if he did not enter the file server name,
+ port number, and key file as command line arguments. If the user answers yes, then the 
+ user will be prompted for the name, port number, and key file of the file server, and 
+ the client application will attempt to connect to the file server. From this 
+ point, the client application will display a menu allowing the user to manage 
+ groups and users, manage files, or exit. The user will also be prompted for a 
+ password at the beginning of the application. The first time a password is 
+ supplied for a user, it will be saved by the Group Server. All subsequent times 
+ that the user connects to the Group Server, the password that the user supplies 
+ will be checked against the password stored by the Group Server. A user can 
+ change his password under the user & group options.
+ 
