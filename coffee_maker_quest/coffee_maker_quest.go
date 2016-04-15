@@ -23,7 +23,7 @@ type Player struct {
 }
 
 /* Constants */
-const delim = '\n'
+const delim = '\n' //For reading only single lines
 
 func adder(x int, y int) int {
 	return x + y
@@ -51,6 +51,8 @@ if err != nil {
 fmt.Printf(line) */
 
 func Run() {
+
+	/* Create current Player */
 	current_player := Player{0, 0, 0, 1}
 	fmt.Println("Player is: ", current_player)
 
@@ -59,4 +61,7 @@ func Run() {
 
 	r.ReadString(delim)
 
+	for current_player.keep_going == 1 {
+		fmt.Printf("Kittens\n")
+	}
 }
