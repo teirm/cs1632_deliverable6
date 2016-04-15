@@ -17,9 +17,15 @@ func adder(x int, y int) int {
 	return x + y
 }
 
-func process_bag(bag_status int ) int {
+func process_bag(bag_status int) int {
 
-	return 0
+	if bag_status == 7 {
+		return 1
+	} else if bag_status == 0 {
+		return 0
+	} else {
+		return -1
+	}
 }
 
 func Run() {
