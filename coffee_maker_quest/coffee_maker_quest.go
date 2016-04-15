@@ -40,6 +40,12 @@ func process_bag(bag_status int) int {
 	}
 }
 
+func display_instructions() bool {
+
+	return true
+
+}
+
 /* Example of user Input
 r := bufio.NewReader(os.Stdin)
 fmt.Printf("Enter a string: ")
@@ -62,6 +68,8 @@ func Run() {
 	r.ReadString(delim)
 
 	for current_player.keep_going == 1 {
-		fmt.Printf("Kittens\n")
+		
+	
+	
 	}
 }

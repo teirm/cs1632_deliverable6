@@ -61,11 +61,24 @@ func Test_over_sized_bag(t *testing.T) {
 	}
 }
 
-func Test_adder(t *testing.T) {
+/* Display Instructions Tests */
+func Test_display_instructions(t *testing.T) {
+	
+	exp := true
+	act := display_instructions()
+
+	if exp != act {
+		t.Fatal("Expected %d gog %d", exp, act)
+	}
+}
+
+
+/* NOTE: THIS WAS A DUMMY TEST */
+/*func Test_adder(t *testing.T) {
 	exp := 3 + 4
 	act := adder(3, 4)
 
 	if exp != act {
 		t.Fatal("Expected %d gog %d", exp, act)
 	}
-}
+}*/
