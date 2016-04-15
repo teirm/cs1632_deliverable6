@@ -1,0 +1,4 @@
+package: github.com/teirm/cs1632_deliverable6
+import:
+- package: github.com/onsi/ginkgo
+- package: github.com/onsi/gomega
