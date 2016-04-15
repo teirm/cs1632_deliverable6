@@ -13,8 +13,13 @@ type room struct {
 	room_adj   string
 }
 
-func Adder(x int, y int) int {
+func adder(x int, y int) int {
 	return x + y
+}
+
+func process_bag(bag_status int ) int {
+
+	return 0
 }
 
 func Run() {
