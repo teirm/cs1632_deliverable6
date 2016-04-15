@@ -23,6 +23,15 @@ func Test_example(t *testing.T) {
 	RunSpecs(t, "Coffee Maker Quest")
 }
 
+func Test_i_love_cyrus(t *testing.T) {
+	var expected = 0
+	var actual = 1
+
+	if expected != actual {
+		t.Fatalf("Expected %d but got %d", expected, actual)
+	}
+}
+
 /* Process Bag Tests */
 func Test_empty_bag(t *testing.T) {
 
@@ -30,7 +39,7 @@ func Test_empty_bag(t *testing.T) {
 	act := process_bag(0)
 
 	if exp != act {
-		t.Fatal("Expected %d gog %d", exp, act)
+		t.Fatalf("Expected %d got %d", exp, act)
 	}
 }
 
@@ -39,7 +48,7 @@ func Test_full_bag(t *testing.T) {
 	exp := 1
 	act := process_bag(7)
 	if exp != act {
-		t.Fatal("Expected %d gog %d", exp, act)
+		t.Fatalf("Expected %d got %d", exp, act)
 	}
 }
 
@@ -48,7 +57,7 @@ func Test_negative_bag(t *testing.T) {
 	exp := -1
 	act := process_bag(-1)
 	if exp != act {
-		t.Fatal("Expected %d gog %d", exp, act)
+		t.Fatalf("Expected %d got %d", exp, act)
 	}
 }
 
@@ -57,7 +66,7 @@ func Test_over_sized_bag(t *testing.T) {
 	exp := -1
 	act := process_bag(30)
 	if exp != act {
-		t.Fatal("Expected %d gog %d", exp, act)
+		t.Fatalf("Expected %d got %d", exp, act)
 	}
 }
 
@@ -68,7 +77,7 @@ func Test_display_instructions(t *testing.T) {
 	act := display_instructions()
 
 	if exp != act {
-		t.Fatal("Expected %d gog %d", exp, act)
+		t.Fatalf("Expected %d got %d", exp, act)
 	}
 }
 
@@ -78,6 +87,6 @@ func Test_display_instructions(t *testing.T) {
 	act := adder(3, 4)
 
 	if exp != act {
-		t.Fatal("Expected %d gog %d", exp, act)
+		t.Fatalf("Expected %d got %d", exp, act)
 	}
 }*/
