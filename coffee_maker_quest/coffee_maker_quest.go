@@ -23,12 +23,15 @@ type Player struct {
 }
 
 /* Constants */
-const delim = '\n' //For reading only single lines
+const delim = '\n'     //For reading only single lines
+const total_states = 6 //Total number of rooms in game
 
+/* DUMMY FUNCTION */
 func adder(x int, y int) int {
 	return x + y
 }
 
+/* PROCESSES BAG TO DETERMINE WIN/LOSS */
 func process_bag(bag_status int) int {
 
 	if bag_status == 7 {
@@ -40,9 +43,17 @@ func process_bag(bag_status int) int {
 	}
 }
 
+/* DISPLAYS INSTRUCTIONS */
 func display_instructions() bool {
 	fmt.Printf("\n INSTRUCTIONS (N, S, L, I, H, D) >\n")
-	return true	
+	return true
+}
+
+/* INITIALIZE GAME */
+func init_game(states int, array []Room) {
+
+	fmt.Printf("Kittens")
+
 }
 
 /* Example of user Input
@@ -57,18 +68,21 @@ fmt.Printf(line) */
 
 func Run() {
 
+	/* Create a reader */
+	r := bufio.NewReader(os.Stdin)
+
 	/* Create current Player */
 	current_player := Player{0, 0, 0, 1}
-	fmt.Println("Player is: ", current_player)
 
-	r := bufio.NewReader(os.Stdin)
+	/* Create array of rooms for traversal */
+	var game_states [total_states]Room
+	init_game(total_states, game_states[:])
+
+	fmt.Println("Player is: ", current_player)
 	fmt.Printf("Coffee Maker Quest 2.0\n")
 
-	r.ReadString(delim)
-
 	for current_player.keep_going == 1 {
-		
-	
-	
+		display_instructions()
+		r.ReadString(delim)
 	}
 }
