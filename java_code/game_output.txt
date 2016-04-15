@@ -1,0 +1,162 @@
+Coffee Maker Quest 1.0
+
+You see a Small room.
+It has a Quaint sofa.
+A Magenta door leads North.
+
+ INSTRUCTIONS (N,S,L,I,D) > 
+
+You see a Funny room.
+It has a Sad record player.
+A Beige door leads North.
+A Massive door leads South.
+
+ INSTRUCTIONS (N,S,L,I,D) > 
+
+You see a Refinanced room.
+It has a Tight pizza.
+A Dead door leads North.
+A Smart door leads South.
+
+ INSTRUCTIONS (N,S,L,I,D) > 
+
+You see a Dumb room.
+It has a Flat energy drink.
+A Vivacious door leads North.
+A Slim door leads South.
+
+ INSTRUCTIONS (N,S,L,I,D) > 
+
+You see a Bloodthirsty room.
+It has a Beautiful bag of money.
+A Purple door leads North.
+A Sandy door leads South.
+
+ INSTRUCTIONS (N,S,L,I,D) > 
+
+You see a Rough room.
+It has a Perfect air hockey table.
+A Minimalist door leads South.
+
+ INSTRUCTIONS (N,S,L,I,D) > 
+You are in a magical land!  But you are returned to the beginning!
+ INSTRUCTIONS (N,S,L,I,D) > 
+You are in a magical land!  But you are returned to the beginning!
+ INSTRUCTIONS (N,S,L,I,D) > 
+You are in a magical land!  But you are returned to the beginning!
+ INSTRUCTIONS (N,S,L,I,D) > 
+There might be something here...
+You found some creamy cream!
+
+You see a Small room.
+It has a Quaint sofa.
+A Magenta door leads North.
+
+ INSTRUCTIONS (N,S,L,I,D) > 
+
+You see a Funny room.
+It has a Sad record player.
+A Beige door leads North.
+A Massive door leads South.
+
+ INSTRUCTIONS (N,S,L,I,D) > 
+You don't see anything out of the ordinary.
+
+You see a Funny room.
+It has a Sad record player.
+A Beige door leads North.
+A Massive door leads South.
+
+ INSTRUCTIONS (N,S,L,I,D) > 
+
+You see a Refinanced room.
+It has a Tight pizza.
+A Dead door leads North.
+A Smart door leads South.
+
+ INSTRUCTIONS (N,S,L,I,D) > 
+There might be something here...
+You found some caffeinated coffee!
+
+You see a Refinanced room.
+It has a Tight pizza.
+A Dead door leads North.
+A Smart door leads South.
+
+ INSTRUCTIONS (N,S,L,I,D) > 
+
+You see a Dumb room.
+It has a Flat energy drink.
+A Vivacious door leads North.
+A Slim door leads South.
+
+ INSTRUCTIONS (N,S,L,I,D) > 
+You have a cup of delicious coffee.
+You have some fresh cream.
+YOU HAVE NO SUGAR!
+
+You see a Dumb room.
+It has a Flat energy drink.
+A Vivacious door leads North.
+A Slim door leads South.
+
+ INSTRUCTIONS (N,S,L,I,D) > 
+You don't see anything out of the ordinary.
+
+You see a Dumb room.
+It has a Flat energy drink.
+A Vivacious door leads North.
+A Slim door leads South.
+
+ INSTRUCTIONS (N,S,L,I,D) > 
+
+You see a Bloodthirsty room.
+It has a Beautiful bag of money.
+A Purple door leads North.
+A Sandy door leads South.
+
+ INSTRUCTIONS (N,S,L,I,D) > 
+You don't see anything out of the ordinary.
+
+You see a Bloodthirsty room.
+It has a Beautiful bag of money.
+A Purple door leads North.
+A Sandy door leads South.
+
+ INSTRUCTIONS (N,S,L,I,D) > 
+
+You see a Rough room.
+It has a Perfect air hockey table.
+A Minimalist door leads South.
+
+ INSTRUCTIONS (N,S,L,I,D) > 
+There might be something here...
+You found some sweet sugar!
+
+You see a Rough room.
+It has a Perfect air hockey table.
+A Minimalist door leads South.
+
+ INSTRUCTIONS (N,S,L,I,D) > 
+You have a cup of delicious coffee.
+You have some fresh cream.
+You have some tasty sugar.
+
+You drink the beverage and are ready to study!
+You win!
+Exiting with error code 0
+Coffee Maker Quest 1.0
+
+You see a Small room.
+It has a Quaint sofa.
+A Magenta door leads North.
+
+ INSTRUCTIONS (N,S,L,I,D) > 
+YOU HAVE NO COFFEE!
+YOU HAVE NO CREAM!
+YOU HAVE NO SUGAR!
+
+You drink the air, as you have no coffee, sugar, or cream.
+The air is invigorating, but not invigorating enough.  You cannot study.
+You lose!
+Exiting with error code 1
