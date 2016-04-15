@@ -41,9 +41,8 @@ func process_bag(bag_status int) int {
 }
 
 func display_instructions() bool {
-
-	return true
-
+	fmt.Printf("\n INSTRUCTIONS (N, S, L, I, H, D) >\n")
+	return true	
 }
 
 /* Example of user Input
