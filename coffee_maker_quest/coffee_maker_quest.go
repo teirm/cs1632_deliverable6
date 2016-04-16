@@ -55,10 +55,10 @@ func display_instructions() bool {
 }
 
 /* INITIALIZE GAME */
-func init_game(states int, array []Room) {
+func init_game(array []Room) {
 
-	for i := 0; i < states; i++ {
-		array[i] = Room{"S", "K", "K", "L", "M"}
+	for i := 0; i < len(array); i++ {
+		create_room(i, &array[i])
 	}
 }
 
@@ -118,7 +118,7 @@ func Run() {
 
 	/* Create array of rooms for traversal */
 	var game_states [total_states]Room
-	init_game(total_states, game_states[:])
+	init_game(game_states[:])
 
 	fmt.Println("Player is: ", current_player)
 	fmt.Printf("Coffee Maker Quest 2.0\n")

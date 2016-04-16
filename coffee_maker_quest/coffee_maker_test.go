@@ -97,7 +97,7 @@ func Test_valid_state_count(t *testing.T) {
 	exp := 4
 
 	var test_states [array_states]Room
-	init_game(exp, test_states[:])
+	init_game(test_states[:])
 
 	act := len(test_states)
 
@@ -106,8 +106,48 @@ func Test_valid_state_count(t *testing.T) {
 	}
 }
 
-/* Create Room Tests */
+func Test_state_correctness(t *testing.T) {
 
+	const array_states = 6
+	var test_states [array_states]Room
+
+	test_room := 3
+
+	exp_radj := "Dumb"
+	exp_furn := "Flat energy drink"
+	exp_nd := "Vivacious"
+	exp_sd := "Slim"
+	exp_item := "Coffee"
+
+	init_game(test_states[:])
+	act_nd := test_states[test_room].north_door
+	act_sd := test_states[test_room].south_door
+	act_furn := test_states[test_room].furniture
+	act_radj := test_states[test_room].room_adj
+	act_item := test_states[test_room].item
+
+	if !strings.EqualFold(exp_nd, act_nd) {
+		t.Fatalf("Expected %s got %s", exp_nd, act_nd)
+	}
+
+	if !strings.EqualFold(exp_sd, act_sd) {
+		t.Fatalf("Expected %s got %s", exp_sd, act_sd)
+	}
+
+	if !strings.EqualFold(exp_furn, act_furn) {
+		t.Fatalf("Expected %s got %s", exp_furn, act_furn)
+	}
+
+	if !strings.EqualFold(exp_radj, act_radj) {
+		t.Fatalf("Expected %s got %s", exp_radj, act_radj)
+	}
+
+	if !strings.EqualFold(exp_item, act_item) {
+		t.Fatalf("Expected %s got %s", exp_item, act_item)
+	}
+}
+
+/* Create Room Tests */
 func Test_create_room(t *testing.T) {
 
 	room_pos := 2
