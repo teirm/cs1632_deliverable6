@@ -31,6 +31,11 @@ func adder(x int, y int) int {
 	return x + y
 }
 
+/* MOVES THE PLAYER ONE ROOM NORTH (IF POSSIBRU) */
+func move_north(cur_pos int, total_states int) int{
+	return 0;
+}
+
 /* PROCESSES BAG TO DETERMINE WIN/LOSS */
 func process_bag(bag_status int) int {
 
@@ -51,11 +56,7 @@ func display_instructions() bool {
 
 /* INITIALIZE GAME */
 func init_game(states int, array []Room) {
-
-<<<<<<< HEAD
-/* MOVES THE PLAYER ONE ROOM NORTH (IF POSSIBRU) */
-func move_north(cur_pos int, total_states int) int {
-	return 0
+	fmt.Printf("Kittens")
 }
 
 /* Example of user Input
@@ -65,13 +66,8 @@ line, err := r.ReadString(delim)
 if err != nil {
 	fmt.Println(err)
 	os.Exit(1)
-=======
-	for i := 0; i < total_states; i++ {
-
-	}
-
->>>>>>> 3f324ac74d2b9a7d64d7155aba5e961af5cf5d6b
 }
+fmt.Printf(line) */
 
 func Run() {
 	/* Create a reader */
