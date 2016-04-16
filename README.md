@@ -8,9 +8,9 @@ To run the program:
 
 To run test suite:
 
-	Enter coffe_maker_quest directory
-	go test
+	cd coffee_maker_quest/
+	go test -v
 
 ## Milestones
-	2016-04-16: Completed Inventory and Input
+	2016-04-16: Completed Inventory and Input and associated tests
 
