@@ -283,7 +283,13 @@ func Test_display_instructions(t *testing.T) {
 		t.Fatalf("Expected %d got %d", exp, act)
 	}
 }
+
+/* DISPLAY INVENTORY TEST */
+func Test_display_inventory(t *testing.T) {
 	
+
+
+}
 
 /* NOTE: THIS WAS A DUMMY TEST */
 /*func Test_adder(t *testing.T) {

@@ -26,6 +26,7 @@ type Player struct {
 /* Constants */
 const delim = '\n'     //For reading only single lines
 const total_states = 6 //Total number of rooms in game
+const inventory_slots = 3 //Total number of inventory slots
 
 /* DUMMY FUNCTION */
 func adder(x int, y int) int {
@@ -127,6 +128,9 @@ func display_instructions() int {
 	return 1
 }
 
+func display_inventory(inventory []string) int {
+	return 2
+}
 
 
 /* Example of user Input
