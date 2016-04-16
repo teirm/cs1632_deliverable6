@@ -11,9 +11,9 @@ package coffee_maker_quest
 import (
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
-	"testing"
 	"strings"
-) 
+	"testing"
+)
 
 /* Test method names have to start with 'Test'
 Different types of tests exist: *testing.<Type>
@@ -113,28 +113,30 @@ func Test_create_room(t *testing.T) {
 	room_pos := 2
 
 	var test_room Room
-	
-	exp_nd := "Refinanced"
-	exp_sd := "Tight pizza"	 
-	exp_furn := "Dead"
-	exp_radj := "Smart"
+
+	exp_radj := "Refinanced"
+	exp_furn := "Tight pizza"
+	exp_nd := "Dead"
+	exp_sd := "Smart"
+	exp_item := ""
 
 	exp_ret := 1
 
 	/* passes test_room as a pointer */
 	act_ret := create_room(room_pos, &test_room)
-	
+
 	act_nd := test_room.north_door
 	act_sd := test_room.south_door
 	act_furn := test_room.furniture
 	act_radj := test_room.room_adj
+	act_item := test_room.item
 
 	if !strings.EqualFold(exp_nd, act_nd) {
-	   t.Fatalf("Expected %s got %s", exp_nd, act_nd)
+		t.Fatalf("Expected %s got %s", exp_nd, act_nd)
 	}
 
 	if !strings.EqualFold(exp_sd, act_sd) {
-	   t.Fatalf("Expected %s got %s", exp_sd, act_sd)
+		t.Fatalf("Expected %s got %s", exp_sd, act_sd)
 	}
 
 	if !strings.EqualFold(exp_furn, act_furn) {
@@ -145,9 +147,34 @@ func Test_create_room(t *testing.T) {
 		t.Fatalf("Expected %s got %s", exp_radj, act_radj)
 	}
 
+	if !strings.EqualFold(exp_item, act_item) {
+		t.Fatalf("Expected %s got %s", exp_item, act_item)
+	}
+
 	if exp_ret != act_ret {
-	   t.Fatalf("Expected %s got %s", exp_ret, act_ret)
-	}	   
+		t.Fatalf("Expected %s got %s", exp_ret, act_ret)
+	}
+}
+
+func Test_check_room_item(t *testing.T) {
+
+	room_pos := 0
+	var test_room Room
+
+	exp_item := "Cream"
+	exp_ret := 1
+
+	act_ret := create_room(room_pos, &test_room)
+
+	act_item := test_room.item
+
+	if !strings.EqualFold(exp_item, act_item) {
+		t.Fatalf("Expected %s got %s", exp_item, act_item)
+	}
+
+	if exp_ret != act_ret {
+		t.Fatalf("Expected %s got %s", exp_ret, act_ret)
+	}
 }
 
 /* NOTE: THIS WAS A DUMMY TEST */

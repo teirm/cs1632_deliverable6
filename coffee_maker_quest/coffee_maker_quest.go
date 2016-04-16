@@ -32,8 +32,8 @@ func adder(x int, y int) int {
 }
 
 /* MOVES THE PLAYER ONE ROOM NORTH (IF POSSIBRU) */
-func move_north(cur_pos int, total_states int) int{
-	return 0;
+func move_north(cur_pos int, total_states int) int {
+	return 0
 }
 
 /* PROCESSES BAG TO DETERMINE WIN/LOSS */
@@ -58,34 +58,46 @@ func display_instructions() bool {
 func init_game(states int, array []Room) {
 
 	for i := 0; i < states; i++ {
-		array[i] = Room{"S","K","K","L","M"}
+		array[i] = Room{"S", "K", "K", "L", "M"}
 	}
 }
 
 func create_room(room_pos int, room *Room) int {
 
 	adj_furn_array := [...]string{"Small", "Quaint sofa", "Magenta", "NONE",
-									"Funny", "Sad record player", "Beige", "Massive",
-									"Refinanced", "Tight pizza", "Dead", "Smart",
-									"Dumb", "Flat energy drink", "Vivacious", "Slim",
-									"Bloodthirsty", "Beautiful bag of money", "Purple", "Sandy",
-									"Rough", "Perfect air hockey table", "NONE", "Minimalist"} 
+		"Funny", "Sad record player", "Beige", "Massive",
+		"Refinanced", "Tight pizza", "Dead", "Smart",
+		"Dumb", "Flat energy drink", "Vivacious", "Slim",
+		"Bloodthirsty", "Beautiful bag of money", "Purple", "Sandy",
+		"Rough", "Perfect air hockey table", "NONE", "Minimalist"}
 
 	index := room_pos * 4
 
 	if room_pos == 0 {
-	} else if room_pos == total_states / 2 {
-	} else if room_pos == total_states - 1 {
+		room.room_adj = adj_furn_array[index+0]
+		room.furniture = adj_furn_array[index+1]
+		room.north_door = adj_furn_array[index+2]
+		room.item = "Cream"	
+	} else if room_pos == total_states/2 {
+		room.room_adj = adj_furn_array[index+0]
+		room.furniture = adj_furn_array[index+1]
+		room.north_door = adj_furn_array[index+2]
+		room.south_door = adj_furn_array[index+3]
+		room.item =  "Coffee"
+	} else if room_pos == total_states-1 {
+		room.room_adj = adj_furn_array[index+0]
+		room.furniture = adj_furn_array[index+1]
+		room.south_door = adj_furn_array[index+3]
+		room.item = "Sugar"
 	} else {
-		room.north_door = adj_furn_array[index + 0]
-		room.south_door = adj_furn_array[index + 1]
-		room.furniture = adj_furn_array[index + 2]
-		room.room_adj = adj_furn_array[index + 3]
+		room.room_adj = adj_furn_array[index+0]
+		room.furniture = adj_furn_array[index+1]
+		room.north_door = adj_furn_array[index+2]
+		room.south_door = adj_furn_array[index+3]
 	}
 
-	return 1 
+	return 1
 }
-
 
 /* Example of user Input
 r := bufio.NewReader(os.Stdin)
