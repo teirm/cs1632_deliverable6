@@ -56,18 +56,12 @@ func i_love_cyrus() int {
 
 /* INITIALIZE GAME */
 func init_game(states int, array []Room) {
-	fmt.Printf("Kittens")
-}
 
-/* Example of user Input
-r := bufio.NewReader(os.Stdin)
-fmt.Printf("Enter a string: ")
-line, err := r.ReadString(delim)
-if err != nil {
-	fmt.Println(err)
-	os.Exit(1)
+	for i := 0; i < total_states; i++ {
+
+	}
+
 }
-fmt.Printf(line) */
 
 func Run() {
 

@@ -12,9 +12,7 @@ import (
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	"testing"
-)
-
-/* Test method names have to start with 'Test'
+) /* Test method names have to start with 'Test'
 Different types of tests exist: *testing.<Type>
 See https://golang.org/pkg/testing/ for more info */
 
@@ -75,6 +73,22 @@ func Test_display_instructions(t *testing.T) {
 
 	exp := true
 	act := display_instructions()
+
+	if exp != act {
+		t.Fatalf("Expected %d got %d", exp, act)
+	}
+}
+
+/* Initialization Tests */
+func Test_valid_state_count(t *testing.T) {
+
+	const array_states = 4
+	exp := 4
+
+	var test_states [array_states]Room
+	init_game(exp, test_states[:])
+
+	act := len(test_states)
 
 	if exp != act {
 		t.Fatalf("Expected %d got %d", exp, act)
