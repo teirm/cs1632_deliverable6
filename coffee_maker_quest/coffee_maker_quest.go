@@ -54,6 +54,11 @@ func init_game(states int, array []Room) {
 	fmt.Printf("Kittens")
 }
 
+/* MOVES THE PLAYER ONE ROOM NORTH (IF POSSIBRU) */
+func move_north(cur_pos int, total_states int) int {
+	return 0
+}
+
 /* Example of user Input
 r := bufio.NewReader(os.Stdin)
 fmt.Printf("Enter a string: ")

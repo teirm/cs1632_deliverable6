@@ -72,6 +72,23 @@ func Test_display_instructions(t *testing.T) {
 	}
 }
 
+/* Move North Test */
+func Test_move_north(t *testing.T) {
+
+	// consider a test room struct that
+	//		contains 5 rooms
+	total_rooms := 5
+	cur_room := 0 // zero-based
+	exp := 1
+
+	// try to move from room 0 to 1
+	act := move_north(cur_room, total_rooms)
+
+	if exp != act {
+		t.Fatalf("Expected %d room, got %d", exp, act)
+	}
+}
+
 /* NOTE: THIS WAS A DUMMY TEST */
 /*func Test_adder(t *testing.T) {
 	exp := 3 + 4
