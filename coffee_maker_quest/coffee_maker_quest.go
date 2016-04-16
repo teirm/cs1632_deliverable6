@@ -31,6 +31,11 @@ func adder(x int, y int) int {
 	return x + y
 }
 
+/* MOVES THE PLAYER ONE ROOM NORTH (IF POSSIBRU) */
+func move_north(cur_pos int, total_states int) int{
+	return 0;
+}
+
 /* PROCESSES BAG TO DETERMINE WIN/LOSS */
 func process_bag(bag_status int) int {
 
@@ -55,8 +60,17 @@ func init_game(states int, array []Room) {
 	for i := 0; i < states; i++ {
 		array[i] = Room{"S","K","K","L","M"}
 	}
-
 }
+
+/* Example of user Input
+r := bufio.NewReader(os.Stdin)
+fmt.Printf("Enter a string: ")
+line, err := r.ReadString(delim)
+if err != nil {
+	fmt.Println(err)
+	os.Exit(1)
+}
+fmt.Printf(line) */
 
 func Run() {
 	/* Create a reader */
