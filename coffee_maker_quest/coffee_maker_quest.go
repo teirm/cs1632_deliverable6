@@ -24,8 +24,8 @@ type Player struct {
 }
 
 /* Constants */
-const delim = '\n'     //For reading only single lines
-const total_states = 6 //Total number of rooms in game
+const delim = '\n'        //For reading only single lines
+const total_states = 6    //Total number of rooms in game
 const inventory_slots = 3 //Total number of inventory slots
 
 /* DUMMY FUNCTION */
@@ -121,17 +121,16 @@ func check_input(in string) bool {
 /* DISPLAY INSTRUCTIONS */
 func display_instructions() int {
 
-	fmt.Printf("Instructions for Coffee Maker Quest -\n" + 
-			"You are a brave student trying to study for finals, but you need caffeine.\n" + 
-			"The goal of the game is to collect sugar, coffee, and cream so that you can study.\n")	
-	
+	fmt.Printf("Instructions for Coffee Maker Quest -\n" +
+		"You are a brave student trying to study for finals, but you need caffeine.\n" +
+		"The goal of the game is to collect sugar, coffee, and cream so that you can study.\n")
+
 	return 1
 }
 
 func display_inventory(inventory []string) int {
 	return 2
 }
-
 
 /* Example of user Input
 r := bufio.NewReader(os.Stdin)

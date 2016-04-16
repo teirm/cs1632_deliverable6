@@ -285,10 +285,133 @@ func Test_display_instructions(t *testing.T) {
 }
 
 /* DISPLAY INVENTORY TEST */
-func Test_display_inventory(t *testing.T) {
-	
+func Test_display_empty_inventory(t *testing.T) {
 
+	const inventory_size = 3
+	exp := 0
 
+	var inventory [inventory_size]string
+
+	act := display_inventory(inventory[:])
+
+	if exp != act {
+		t.Fatalf("Expected %d got %d", exp, act)
+	}
+}
+
+func Test_wrong_item_inventory(t *testing.T) {
+
+	const inventory_size = 3
+	exp := 0
+	var inventory [inventory_size]string
+
+	/* Add a junk item to inventory */
+	inventory[0] = "Fishsticks"
+	act := display_inventory(inventory[:])
+
+	if exp != act {
+		t.Fatalf("Expected %d got %d", exp, act)
+	}
+}
+
+func Test_display_coffee_inventory(t *testing.T) {
+
+	const inventory_size = 3
+	exp := 1
+	var inventory [inventory_size]string
+
+	/* Add Coffee to the inventory */
+	inventory[0] = "Coffee"
+	act := display_inventory(inventory[:])
+
+	if exp != act {
+		t.Fatalf("Expected %d got %d", exp, act)
+	}
+}
+
+func Test_display_cream_inventory(t *testing.T) {
+
+	const inventory_size = 3
+	exp := 2
+	var inventory [inventory_size]string
+
+	/* Add Cream to the inventory */
+	inventory[0] = "Cream"
+	act := display_inventory(inventory[:])
+
+	if exp != act {
+		t.Fatalf("Expected %d got %d", exp, act)
+	}
+}
+
+func Test_display_sugar_inventory(t *testing.T) {
+
+	const inventory_size = 3
+	exp := 4
+	var inventory [inventory_size]string
+
+	/* Add Sugar to the inventory */
+	inventory[0] = "Sugar"
+	act := display_inventory(inventory[:])
+
+	if exp != act {
+		t.Fatalf("Expected %d got %d", exp, act)
+	}
+}
+
+func Test_display_sugar_cream_inventory(t *testing.T) {
+
+	const inventory_size = 3
+	exp := 6
+	var inventory [inventory_size]string
+
+	/* Add sugar and cream to the inventory */
+	inventory[0] = "Sugar"
+	inventory[1] = "Cream"
+	act := display_inventory(inventory[:])
+
+	if exp != act {
+		t.Fatalf("Expected %d got %d", exp, act)
+	}
+}
+
+func Test_full_inventory(t *testing.T) {
+
+	const inventory_size = 3
+	exp := 7
+	var inventory [inventory_size]string
+
+	/* Add all proper items to inventory */
+	inventory[0] = "Coffee"
+	inventory[1] = "Cream"
+	inventory[2] = "Sugar"
+
+	act := display_inventory(inventory[:])
+
+	if exp != act {
+		t.Fatalf("Expected %d got %d", exp, act)
+	}
+}
+
+func Test_inv_pos_invariance(t *testing.T) {
+
+	const inventory_size = 3
+	exp := 0
+	var inventory_1 [inventory_size]string
+	var inventory_2 [inventory_size]string
+
+	inventory_1[0] = "Coffee"
+	inventory_1[1] = "Sugar"
+
+	inventory_2[0] = "Sugar"
+	inventory_2[1] = "Coffee"
+
+	act_1 := display_inventory(inventory_1[:])
+	act_2 := display_inventory(inventory_2[:])
+
+	if exp != (act_1 - act_2) {
+		t.Fatalf("Expected %d got %d (%d - %d)", exp, act_1-act_2, act_1, act_2)
+	}
 }
 
 /* NOTE: THIS WAS A DUMMY TEST */
