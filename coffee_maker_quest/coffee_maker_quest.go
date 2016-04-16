@@ -49,11 +49,6 @@ func display_instructions() bool {
 	return true
 }
 
-func i_love_cyrus() int {
-	fmt.Println("I FUCKING LOVE:", "CYRUS")
-	return 1
-}
-
 /* INITIALIZE GAME */
 func init_game(states int, array []Room) {
 	fmt.Printf("Kittens")
@@ -70,7 +65,6 @@ if err != nil {
 fmt.Printf(line) */
 
 func Run() {
-
 	/* Create a reader */
 	r := bufio.NewReader(os.Stdin)
 

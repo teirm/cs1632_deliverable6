@@ -23,15 +23,6 @@ func Test_example(t *testing.T) {
 	RunSpecs(t, "Coffee Maker Quest")
 }
 
-func Test_i_love_cyrus(t *testing.T) {
-	var expected = 0
-	var actual = 1
-
-	if expected != actual {
-		t.Fatalf("Expected %d but got %d", expected, actual)
-	}
-}
-
 /* Process Bag Tests */
 func Test_empty_bag(t *testing.T) {
 
