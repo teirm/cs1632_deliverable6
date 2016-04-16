@@ -217,6 +217,63 @@ func Test_check_room_item(t *testing.T) {
 	}
 }
 
+/* INPUT TESTS */
+
+func Test_input_N(t *testing.T) {
+
+	input_1 := check_input("N")
+	if input_1 != true {
+		t.Fatalf("Exected true got false")
+	}
+}
+
+func Test_input_D(t *testing.T) {
+	
+	input_2 := check_input("D")
+	if input_2 != true {
+		t.Fatalf("Exected true got false")
+	}
+}
+
+func Test_invalid_input(t *testing.T) {
+	input_3 := check_input("Q")
+	if input_3 != false {
+		t.Fatalf("Expected false got true")
+	}
+}
+
+func Test_invalid_string(t *testing.T) {
+	input_4 := check_input("Zustandsumme")
+	if input_4 != false {
+		t.Fatalf("Expected false got true")
+	}
+}
+
+func Test_first_char_string(t *testing.T) {
+	input_5 := check_input("Daenerys")
+	if input_5 != false {
+		t.Fatalf("Expected false got true")
+	}
+}
+
+func Test_case_insensitivity(t *testing.T) {
+	input_6 := check_input("S")
+	input_7 := check_input("s")
+
+	if (input_6 && input_7) != true {
+		t.Fatalf("Expected true, true got one false")
+	}
+}
+
+func Test_invalid_case_insensitivity(t *testing.T) {
+	input_8 := check_input("Z")
+	input_9 := check_input("z")
+
+	if (input_8 || input_9) != false {
+		t.Fatalf("Expected false, false got one true")
+	}
+}
+
 /* NOTE: THIS WAS A DUMMY TEST */
 /*func Test_adder(t *testing.T) {
 	exp := 3 + 4

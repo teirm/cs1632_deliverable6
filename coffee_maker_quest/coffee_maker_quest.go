@@ -62,6 +62,7 @@ func init_game(array []Room) {
 	}
 }
 
+/* CREATE ROOMS */
 func create_room(room_pos int, room *Room) int {
 
 	adj_furn_array := [...]string{"Small", "Quaint sofa", "Magenta", "NONE",
@@ -98,6 +99,12 @@ func create_room(room_pos int, room *Room) int {
 
 	return 1
 }
+
+/* Check user input */
+func check_input(in string) bool {
+	return true
+}
+
 
 /* Example of user Input
 r := bufio.NewReader(os.Stdin)
