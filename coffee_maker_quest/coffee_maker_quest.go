@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 	"strings"
-	)
+)
 
 /* Structs */
 type Room struct {
@@ -50,7 +50,7 @@ func process_bag(bag_status int) int {
 }
 
 /* DISPLAYS INSTRUCTIONS */
-func display_instructions() bool {
+func display_commands() bool {
 	fmt.Printf("\n INSTRUCTIONS (N, S, L, I, H, D) >\n")
 	return true
 }
@@ -79,13 +79,13 @@ func create_room(room_pos int, room *Room) int {
 		room.room_adj = adj_furn_array[index+0]
 		room.furniture = adj_furn_array[index+1]
 		room.north_door = adj_furn_array[index+2]
-		room.item = "Cream"	
+		room.item = "Cream"
 	} else if room_pos == total_states/2 {
 		room.room_adj = adj_furn_array[index+0]
 		room.furniture = adj_furn_array[index+1]
 		room.north_door = adj_furn_array[index+2]
 		room.south_door = adj_furn_array[index+3]
-		room.item =  "Coffee"
+		room.item = "Coffee"
 	} else if room_pos == total_states-1 {
 		room.room_adj = adj_furn_array[index+0]
 		room.furniture = adj_furn_array[index+1]
@@ -101,22 +101,29 @@ func create_room(room_pos int, room *Room) int {
 	return 1
 }
 
-/* Check user input */
+/* CHECK USER INPUT */
 func check_input(in string) bool {
 
 	out := true
-	
 	in = strings.ToUpper(in)
 
-	if !strings.EqualFold(in, "H") && !strings.EqualFold(in, "S") &&
-	   	!strings.EqualFold(in, "L") && !strings.EqualFold(in, "I") &&
-		!strings.EqualFold(in, "H") && !strings.EqualFold(in, "D") { out = false}	
-
-
+	if !strings.EqualFold(in, "N") && !strings.EqualFold(in, "S") &&
+		!strings.EqualFold(in, "L") && !strings.EqualFold(in, "I") &&
+		!strings.EqualFold(in, "H") && !strings.EqualFold(in, "D") {
+		out = false
+	}
 
 	return out
 
 }
+
+/* DISPLAY INSTRUCTIONS */
+func display_instructions() int {
+
+
+	return 0
+}	
+
 
 
 /* Example of user Input
@@ -144,7 +151,7 @@ func Run() {
 	fmt.Printf("Coffee Maker Quest 2.0\n")
 
 	for current_player.keep_going == 1 {
-		display_instructions()
+		display_commands()
 		r.ReadString(delim)
 	}
 }

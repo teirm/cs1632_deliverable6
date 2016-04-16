@@ -63,10 +63,10 @@ func Test_over_sized_bag(t *testing.T) {
 }
 
 /* Display Instructions Tests */
-func Test_display_instructions(t *testing.T) {
+func Test_display_commands(t *testing.T) {
 
 	exp := true
-	act := display_instructions()
+	act := display_commands()
 
 	if exp != act {
 		t.Fatalf("Expected %d got %d", exp, act)
@@ -228,7 +228,7 @@ func Test_input_N(t *testing.T) {
 }
 
 func Test_input_D(t *testing.T) {
-	
+
 	input_2 := check_input("D")
 	if input_2 != true {
 		t.Fatalf("Exected true got false")
@@ -273,6 +273,17 @@ func Test_invalid_case_insensitivity(t *testing.T) {
 		t.Fatalf("Expected false, false got one true")
 	}
 }
+
+/* DISPLAY INSTRUCTIONS TEST */
+func Test_display_instructions(t *testing.T) {
+	exp := 1
+	act := display_instructions()
+
+	if exp != act {
+		t.Fatalf("Expected %d got %d", exp, act)
+	}
+}
+	
 
 /* NOTE: THIS WAS A DUMMY TEST */
 /*func Test_adder(t *testing.T) {
