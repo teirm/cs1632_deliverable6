@@ -62,6 +62,9 @@ func init_game(states int, array []Room) {
 	}
 }
 
+
+
+
 /* Example of user Input
 r := bufio.NewReader(os.Stdin)
 fmt.Printf("Enter a string: ")
