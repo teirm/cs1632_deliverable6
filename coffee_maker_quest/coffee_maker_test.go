@@ -12,7 +12,10 @@ import (
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	"testing"
-) /* Test method names have to start with 'Test'
+	"strings"
+) 
+
+/* Test method names have to start with 'Test'
 Different types of tests exist: *testing.<Type>
 See https://golang.org/pkg/testing/ for more info */
 
@@ -102,6 +105,45 @@ func Test_valid_state_count(t *testing.T) {
 		t.Fatalf("Expected %d got %d", exp, act)
 	}
 }
+
+/* Create Room Tests */
+
+func Test_create_room(t *testing.T) {
+
+	room_pos := 2
+
+	var test_room Room
+	
+	exp_nd := "Refinanced"
+	exp_sd := "Tight pizza"	 
+	exp_furn := "Dead"
+	exp_radj := "Smart"
+
+	create_room(room_pos, test_room)
+	
+	act_nd := test_room.north_door
+	act_sd := test_room.south_door
+	act_furn := test_room.furniture
+	act_radj := test_room.room_adj
+
+	if !strings.EqualFold(exp_nd, act_nd) {
+	   t.Fatalf("Expected %s got %s", exp_nd, act_nd)
+	}
+
+	if !strings.EqualFold(exp_sd, act_sd) {
+	   t.Fatalf("Expected %s got %s", exp_sd, act_sd)
+	}
+
+	if !strings.EqualFold(exp_furn, act_furn) {
+		t.Fatalf("Expected %s got %s", exp_furn, act_furn)
+	}
+
+	if !strings.EqualFold(exp_radj, act_radj) {
+		t.Fatalf("Expected %s got %s", exp_radj, act_radj)
+	}
+}
+
+
 
 
 /* NOTE: THIS WAS A DUMMY TEST */

@@ -62,7 +62,10 @@ func init_game(states int, array []Room) {
 	}
 }
 
+func create_room(room_pos int, room Room) int {
 
+	return 0
+}
 
 
 /* Example of user Input
