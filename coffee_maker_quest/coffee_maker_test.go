@@ -119,7 +119,10 @@ func Test_create_room(t *testing.T) {
 	exp_furn := "Dead"
 	exp_radj := "Smart"
 
-	create_room(room_pos, test_room)
+	exp_ret := 1
+
+	/* passes test_room as a pointer */
+	act_ret := create_room(room_pos, &test_room)
 	
 	act_nd := test_room.north_door
 	act_sd := test_room.south_door
@@ -141,10 +144,11 @@ func Test_create_room(t *testing.T) {
 	if !strings.EqualFold(exp_radj, act_radj) {
 		t.Fatalf("Expected %s got %s", exp_radj, act_radj)
 	}
+
+	if exp_ret != act_ret {
+	   t.Fatalf("Expected %s got %s", exp_ret, act_ret)
+	}	   
 }
-
-
-
 
 /* NOTE: THIS WAS A DUMMY TEST */
 /*func Test_adder(t *testing.T) {

@@ -62,9 +62,28 @@ func init_game(states int, array []Room) {
 	}
 }
 
-func create_room(room_pos int, room Room) int {
+func create_room(room_pos int, room *Room) int {
 
-	return 0
+	adj_furn_array := [...]string{"Small", "Quaint sofa", "Magenta", "NONE",
+									"Funny", "Sad record player", "Beige", "Massive",
+									"Refinanced", "Tight pizza", "Dead", "Smart",
+									"Dumb", "Flat energy drink", "Vivacious", "Slim",
+									"Bloodthirsty", "Beautiful bag of money", "Purple", "Sandy",
+									"Rough", "Perfect air hockey table", "NONE", "Minimalist"} 
+
+	index := room_pos * 4
+
+	if room_pos == 0 {
+	} else if room_pos == total_states / 2 {
+	} else if room_pos == total_states - 1 {
+	} else {
+		room.north_door = adj_furn_array[index + 0]
+		room.south_door = adj_furn_array[index + 1]
+		room.furniture = adj_furn_array[index + 2]
+		room.room_adj = adj_furn_array[index + 3]
+	}
+
+	return 1 
 }
 
 
