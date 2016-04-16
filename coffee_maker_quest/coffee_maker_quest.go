@@ -4,7 +4,8 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-)
+	"strings"
+	)
 
 /* Structs */
 type Room struct {
@@ -102,7 +103,19 @@ func create_room(room_pos int, room *Room) int {
 
 /* Check user input */
 func check_input(in string) bool {
-	return true
+
+	out := true
+	
+	in = strings.ToUpper(in)
+
+	if !strings.EqualFold(in, "H") && !strings.EqualFold(in, "S") &&
+	   	!strings.EqualFold(in, "L") && !strings.EqualFold(in, "I") &&
+		!strings.EqualFold(in, "H") && !strings.EqualFold(in, "D") { out = false}	
+
+
+
+	return out
+
 }
 
 
