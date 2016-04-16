@@ -128,6 +128,8 @@ func display_instructions() int {
 	return 1
 }
 
+
+/* DISPLAY INVENTORY */
 func display_inventory(inventory []string) int {
 
 	has_coffee := 0x000
@@ -162,7 +164,6 @@ func display_inventory(inventory []string) int {
 	}
 
 	return has_coffee | has_cream | has_sugar
-
 }
 
 /* Example of user Input

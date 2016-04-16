@@ -10,3 +10,7 @@ To run test suite:
 
 	Enter coffe_maker_quest directory
 	go test
+
+## Milestones
+	2016-04-16: Completed Inventory and Input
+
