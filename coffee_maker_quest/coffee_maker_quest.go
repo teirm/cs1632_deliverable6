@@ -129,7 +129,21 @@ func display_instructions() int {
 }
 
 func display_inventory(inventory []string) int {
-	return 2
+
+	has_coffee := 0x000
+	has_cream := 0x000
+	has_sugar := 0x000
+
+	for i := 0; i < len(inventory); i++ {
+	
+		
+
+
+
+	}
+
+	return has_coffee + has_cream + has_sugar
+
 }
 
 /* Example of user Input
