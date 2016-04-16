@@ -120,9 +120,12 @@ func check_input(in string) bool {
 /* DISPLAY INSTRUCTIONS */
 func display_instructions() int {
 
-
-	return 0
-}	
+	fmt.Printf("Instructions for Coffee Maker Quest -\n" + 
+			"You are a brave student trying to study for finals, but you need caffeine.\n" + 
+			"The goal of the game is to collect sugar, coffee, and cream so that you can study.\n")	
+	
+	return 1
+}
 
 
 
