@@ -52,8 +52,8 @@ func display_instructions() bool {
 /* INITIALIZE GAME */
 func init_game(states int, array []Room) {
 
-	for i := 0; i < total_states; i++ {
-
+	for i := 0; i < states; i++ {
+		array[i] = Room{"S","K","K","L","M"}
 	}
 
 }
