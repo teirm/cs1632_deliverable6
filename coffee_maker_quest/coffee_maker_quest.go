@@ -44,6 +44,11 @@ func move_north(cur_pos int, total_states int) int {
 	}
 }
 
+/* MOVES THE PLAYER ONE ROOM SOUTH (IF POSSIBRU) */
+func move_south(cur_pos int, total_states int) int {
+	return 0
+}
+
 /* PROCESSES BAG TO DETERMINE WIN/LOSS */
 func process_bag(bag_status int) int {
 
@@ -133,7 +138,6 @@ func display_instructions() int {
 
 	return 1
 }
-
 
 /* DISPLAY INVENTORY */
 func display_inventory(inventory []string) int {

@@ -81,20 +81,20 @@ func Test_move_north(t *testing.T) {
 	total_rooms := 5
 
 	// make sure we can move from room 0 to room[total_rooms]
-	var cur_room int 	// current room
-	var exp_room int 	// expected room (current+1)
-	var act_room int	// actual room
-	for i:=0; i<total_rooms; i++ {
+	var cur_room int // current room
+	var exp_room int // expected room (current+1)
+	var act_room int // actual room
+	for i := 0; i < total_rooms; i++ {
 		cur_room = i
-		exp_room = cur_room+1
+		exp_room = cur_room + 1
 
 		// try to move north of current room
 		act_room = move_north(cur_room, total_rooms)
 
 		// special case is when cur_room is the northern-most
 		//		so we expect to stay in the same room
-		if cur_room==total_rooms-1 {
-			exp_room = total_rooms-1
+		if cur_room == total_rooms-1 {
+			exp_room = total_rooms - 1
 
 			if exp_room != act_room {
 				t.Fatalf("Expected room %d, got room %d", exp_room, act_room)
@@ -102,6 +102,25 @@ func Test_move_north(t *testing.T) {
 		} else if exp_room != act_room {
 			t.Fatalf("Expected room %d, got room %d", exp_room, act_room)
 		}
+	}
+}
+
+/* Move North Test */
+func Test_move_south(t *testing.T) {
+
+	// consider a test room struct that
+	//		contains 5 rooms
+	total_rooms := 5
+
+	// make sure we can move from room 0 to room[total_rooms]
+	var cur_room int = 5 // current room
+	var exp_room int = 4 // expected room (current+1)
+
+	// try to move south of current room
+	act_room := move_south(cur_room, total_rooms)
+
+	if exp_room != act_room {
+		t.Fatalf("Expected room %d, got room %d", exp_room, act_room)
 	}
 }
 
@@ -428,8 +447,6 @@ func Test_inv_pos_invariance(t *testing.T) {
 		t.Fatalf("Expected %d got %d (%d - %d)", exp, act_1-act_2, act_1, act_2)
 	}
 }
-
-
 
 /* NOTE: THIS WAS A DUMMY TEST */
 /*func Test_adder(t *testing.T) {
