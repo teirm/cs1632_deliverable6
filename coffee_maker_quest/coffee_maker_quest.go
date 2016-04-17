@@ -176,9 +176,26 @@ func display_inventory(inventory []string) int {
 	return has_coffee | has_cream | has_sugar
 }
 
-/* DISPLAY ROOM */
+/* DISPLAY ROOM DESCRIPTION */
 func display_room(room Room) string {
-	return "test"
+	var description string = "\nYou see a " + room.room_adj + " room.\n"
+
+	// what kind of room
+
+	// what kind of item in the room
+	description += "It has a " + room.furniture + ".\n"
+
+	// door leading north (if any)
+	if room.north_door != "" {
+		description += "A " + room.north_door + " door leads North.\n"
+	}
+
+	// door leading south (if any)
+	if room.south_door != "" {
+		description += "A " + room.south_door + " door leads South.\n"
+	}
+
+	return description
 }
 
 func Run() {

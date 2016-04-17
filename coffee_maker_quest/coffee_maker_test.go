@@ -459,8 +459,8 @@ func Test_inv_pos_invariance(t *testing.T) {
 	}
 }
 
-func Test_display_room(t *testing.T) {
-	// create a test room
+func Test_display_room_one(t *testing.T) {
+	// create a test room using the southern-most room
 	var room Room
 	create_room(0, &room)
 
@@ -468,9 +468,47 @@ func Test_display_room(t *testing.T) {
 	act := display_room(room)
 
 	// what is expected
-	exp := "You see a Small room.\n" +
+	exp := "\nYou see a Small room.\n" +
 		"It has a Quaint sofa.\n" +
 		"A Magenta door leads North.\n"
+
+	if exp != act {
+		t.Fatalf("Expected string: %s \ngot string: %s", exp, act)
+	}
+}
+
+func Test_display_room_two(t *testing.T) {
+	// create a test room between the southern-most
+	//		and the northern-most
+	var room Room
+	create_room(1, &room)
+
+	// get the user display for the room
+	act := display_room(room)
+
+	// what is expected
+	exp := "\nYou see a Funny room.\n" +
+		"It has a Sad record player.\n" +
+		"A Beige door leads North.\n" +
+		"A Massive door leads South.\n"
+
+	if exp != act {
+		t.Fatalf("Expected string: %s \ngot string: %s", exp, act)
+	}
+}
+
+func Test_display_room_three(t *testing.T) {
+	// create a test room using the northern-most room
+	var room Room
+	create_room(5, &room)
+
+	// get the user display for the room
+	act := display_room(room)
+
+	// what is expected
+	exp := "\nYou see a Rough room.\n" +
+		"It has a Perfect air hockey table.\n" +
+		"A Minimalist door leads South.\n"
 
 	if exp != act {
 		t.Fatalf("Expected string: %s \ngot string: %s", exp, act)
