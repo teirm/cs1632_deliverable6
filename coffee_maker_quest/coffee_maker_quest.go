@@ -17,10 +17,10 @@ type Room struct {
 }
 
 type Player struct {
-	current_pos int
-	win_status  int
-	bag_status  int
-	keep_going  int
+	room         int
+	win_status   int
+	coffee_items int
+	keep_going   int
 }
 
 /* Constants */
@@ -51,11 +51,11 @@ func move_south(cur_pos int, total_states int) int {
 }
 
 /* PROCESSES BAG TO DETERMINE WIN/LOSS */
-func process_bag(bag_status int) int {
+func process_bag(coffee_items int) int {
 
-	if bag_status == 7 {
+	if coffee_items == 7 {
 		return 1
-	} else if bag_status == 0 {
+	} else if coffee_items == 0 {
 		return 0
 	} else {
 		return -1
@@ -167,7 +167,7 @@ func display_inventory(inventory []string) int {
 	}
 
 	if has_cream == 0 {
-		fmt.Printf("YOU HAVE NO CREAM\n")
+		fmt.Printf("YOU HAVE NO CREAM!\n")
 	}
 
 	for i := 0; i < len(inventory); i++ {
@@ -180,6 +180,9 @@ func display_inventory(inventory []string) int {
 	if has_sugar == 0 {
 		fmt.Printf("YOU HAVE NO SUGAR!\n")
 	}
+
+	// WHYYYYYYY
+	fmt.Println("has_coffee | has_cream | has_sugar :", has_coffee|has_cream|has_sugar)
 
 	return has_coffee | has_cream | has_sugar
 }
@@ -216,16 +219,19 @@ func Run() {
 	current_player := Player{0, 0, 0, 1}
 
 	/* Create array of rooms for traversal */
-	var game_states [total_states]Room
-	init_game(game_states[:])
+	var rooms [total_states]Room
+	init_game(rooms[:])
 
 	fmt.Println("Player is: ", current_player)
 	fmt.Printf("Coffee Maker Quest 2.0\n")
 
-	//var item string
+	// the game needs an inventory of what the player has collected
+	//var inventory Inventory
+	var inventory [inventory_slots]string
+
 	for current_player.keep_going == 1 {
 		// always display the room
-		display_room(game_states[current_player.current_pos])
+		display_room(rooms[current_player.room])
 
 		// always display the list of commands
 		display_commands()
@@ -242,26 +248,49 @@ func Run() {
 			switch user_input {
 			case "N":
 				{ // MOVE NORTH
-					current_player.current_pos = move_north(current_player.current_pos, total_states)
+					current_player.room = move_north(current_player.room, total_states)
+					fmt.Println(display_room(rooms[current_player.room]))
 				}
 			case "S":
 				{ // MOVE SOUTH
-					fmt.Println("Current position:", current_player.current_pos)
-					current_player.current_pos = move_south(current_player.current_pos, total_states)
-					fmt.Println("Move South position:", current_player.current_pos)
+					current_player.room = move_south(current_player.room, total_states)
+					fmt.Println(display_room(rooms[current_player.room]))
 				}
 			case "L":
 				{ // LOOK
 					fmt.Println("Searching room")
 
 					// get any coffee items in the room (if exist)
+					switch rooms[current_player.room].item {
+					case "Coffee", "Cream", "Sugar":
+						{
+							fmt.Println("There might be something here...")
+							fmt.Println("You found some", rooms[current_player.room].item)
 
-					// add to inventory (if coffee item exists)
-					//game_states[current_player.current_pos]
+							switch rooms[current_player.room].item {
+							case "Coffee":
+								{
+									inventory[0] = "Coffee"
+								}
+							case "Cream":
+								{
+									inventory[1] = "Cream"
+								}
+							case "Sugar":
+								{
+									inventory[2] = "Sugar"
+								}
+							}
+						}
+					default:
+						{
+							fmt.Println("You don't see anything out of the ordinary.")
+						}
+					}
 				}
 			case "I":
 				{ // CHECK INVENTORY
-					//current_player.bag_status = display_inventory
+					current_player.coffee_items = display_inventory(inventory[:])
 				}
 			case "H":
 				{ // DISPLAY HELP
@@ -269,7 +298,21 @@ func Run() {
 				}
 			case "D":
 				{ // DRINK UP YINZ B*TCHES
+					current_player.coffee_items = display_inventory(inventory[:])
+					current_player.win_status = process_bag(current_player.coffee_items)
 
+					// WHYYYY
+					fmt.Println("coffee items:", current_player.coffee_items)
+					fmt.Println("win status:", current_player.win_status)
+
+					if current_player.win_status == 1 {
+						fmt.Println("\nYou Win!")
+					} else {
+						fmt.Println("\nYou Lose!")
+					}
+
+					// stop
+					current_player.keep_going = 0
 				}
 			}
 		}
