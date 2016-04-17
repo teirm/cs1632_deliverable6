@@ -75,12 +75,11 @@ func Test_display_commands(t *testing.T) {
 
 /* Move North Test */
 func Test_move_north(t *testing.T) {
-
 	// consider a test room struct that
 	//		contains 5 rooms
 	total_rooms := 5
 
-	// make sure we can move from room 0 to room[total_rooms]
+	// make sure we can move between room 0 to room[total_rooms]
 	var cur_room int // current room
 	var exp_room int // expected room (current+1)
 	var act_room int // actual room
@@ -105,22 +104,34 @@ func Test_move_north(t *testing.T) {
 	}
 }
 
-/* Move North Test */
+/* Move South Test */
 func Test_move_south(t *testing.T) {
-
 	// consider a test room struct that
 	//		contains 5 rooms
 	total_rooms := 5
 
-	// make sure we can move from room 0 to room[total_rooms]
-	var cur_room int = 5 // current room
-	var exp_room int = 4 // expected room (current+1)
+	// make sure we can move between room 0 to room[total_rooms]
+	var cur_room int // current room
+	var exp_room int // expected room (current+1)
+	var act_room int // actual room
+	for i := total_rooms; i >= 0; i-- {
+		cur_room = i
+		exp_room = cur_room - 1
 
-	// try to move south of current room
-	act_room := move_south(cur_room, total_rooms)
+		// try to move south of current room
+		act_room = move_south(cur_room, total_rooms)
 
-	if exp_room != act_room {
-		t.Fatalf("Expected room %d, got room %d", exp_room, act_room)
+		// special case is when cur_room is the southern-most
+		//		so we expect to stay in the same room
+		if cur_room == 0 {
+			exp_room = 0
+
+			if exp_room != act_room {
+				t.Fatalf("Expected room %d, got room %d", exp_room, act_room)
+			}
+		} else if exp_room != act_room {
+			t.Fatalf("Expected room %d, got room %d", exp_room, act_room)
+		}
 	}
 }
 
