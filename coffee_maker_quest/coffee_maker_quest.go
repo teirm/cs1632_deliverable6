@@ -223,7 +223,7 @@ func Run() {
 	init_game(rooms[:])
 
 	fmt.Println("Player is: ", current_player)
-	fmt.Printf("Coffee Maker Quest 2.0\n")
+	fmt.Printf("Coffee Maker Quest 2.0 (Golang Edition)\n")
 
 	// the game needs an inventory of what the player has collected
 	//var inventory Inventory
