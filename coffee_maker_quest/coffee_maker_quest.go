@@ -35,7 +35,13 @@ func adder(x int, y int) int {
 
 /* MOVES THE PLAYER ONE ROOM NORTH (IF POSSIBRU) */
 func move_north(cur_pos int, total_states int) int {
-	return 0
+	next_pos := cur_pos + 1
+
+	if next_pos < total_states {
+		return next_pos
+	} else {
+		return cur_pos
+	}
 }
 
 /* PROCESSES BAG TO DETERMINE WIN/LOSS */

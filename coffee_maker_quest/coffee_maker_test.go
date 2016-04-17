@@ -80,13 +80,13 @@ func Test_move_north(t *testing.T) {
 	//		contains 5 rooms
 	total_rooms := 5
 	cur_room := 0 // zero-based
-	exp := 1
+	exp := 2
 
 	// try to move from room 0 to 1
 	act := move_north(cur_room, total_rooms)
 
 	if exp != act {
-		t.Fatalf("Expected %d room, got %d", exp, act)
+		t.Fatalf("Expected room %d, got room %d", exp, act)
 	}
 }
 
