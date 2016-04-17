@@ -151,9 +151,11 @@ func display_inventory(inventory []string) int {
 			has_coffee = 0x001
 			fmt.Printf("You have a cup of delicious coffee.\n")
 			break
-		} else {
-			fmt.Printf("YOU HAVE NO COFFEE!\n")
 		}
+	}
+
+	if has_coffee == 0 {
+		fmt.Printf("YOU HAVE NO COFFEE!\n")
 	}
 
 	for i := 0; i < len(inventory); i++ {
@@ -161,16 +163,22 @@ func display_inventory(inventory []string) int {
 			has_cream = 0x010
 			fmt.Printf("You have some fresh cream.\n")
 			break
-		} else {
-			fmt.Printf("YOU HAVE NO CREAM\n")
 		}
+	}
+
+	if has_cream == 0 {
+		fmt.Printf("YOU HAVE NO CREAM\n")
 	}
 
 	for i := 0; i < len(inventory); i++ {
 		if strings.EqualFold(inventory[i], "Sugar") {
-			has_cream = 0x100
+			has_sugar = 0x100
 			fmt.Printf("You have some fresh sugar.\n")
 		}
+	}
+
+	if has_sugar == 0 {
+		fmt.Printf("YOU HAVE NO SUGAR!\n")
 	}
 
 	return has_coffee | has_cream | has_sugar
