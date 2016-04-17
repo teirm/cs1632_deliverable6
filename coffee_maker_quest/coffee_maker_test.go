@@ -459,12 +459,20 @@ func Test_inv_pos_invariance(t *testing.T) {
 	}
 }
 
-/* NOTE: THIS WAS A DUMMY TEST */
-/*func Test_adder(t *testing.T) {
-	exp := 3 + 4
-	act := adder(3, 4)
+func Test_display_room(t *testing.T) {
+	// create a test room
+	var room Room
+	create_room(0, &room)
+
+	// get the user display for the room
+	act := display_room(room)
+
+	// what is expected
+	exp := "You see a Small room.\n" +
+		"It has a Quaint sofa.\n" +
+		"A Magenta door leads North.\n"
 
 	if exp != act {
-		t.Fatalf("Expected %d got %d", exp, act)
+		t.Fatalf("Expected string: %s \ngot string: %s", exp, act)
 	}
-}*/
+}

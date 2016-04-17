@@ -28,11 +28,6 @@ const delim = '\n'        //For reading only single lines
 const total_states = 6    //Total number of rooms in game
 const inventory_slots = 3 //Total number of inventory slots
 
-/* DUMMY FUNCTION */
-func adder(x int, y int) int {
-	return x + y
-}
-
 /* MOVES THE PLAYER ONE ROOM NORTH (IF POSSIBRU) */
 func move_north(cur_pos int, total_states int) int {
 	next_pos := cur_pos + 1
@@ -181,15 +176,10 @@ func display_inventory(inventory []string) int {
 	return has_coffee | has_cream | has_sugar
 }
 
-/* Example of user Input
-r := bufio.NewReader(os.Stdin)
-fmt.Printf("Enter a string: ")
-line, err := r.ReadString(delim)
-if err != nil {
-	fmt.Println(err)
-	os.Exit(1)
+/* DISPLAY ROOM */
+func display_room(room Room) string {
+	return "test"
 }
-fmt.Printf(line) */
 
 func Run() {
 	/* Create a reader for user input*/
@@ -207,7 +197,11 @@ func Run() {
 	fmt.Println("Player is: ", current_player)
 	fmt.Printf("Coffee Maker Quest 2.0\n")
 
+	//var item string
 	for current_player.keep_going == 1 {
+		// always display the room
+		display_room(game_states[current_player.current_pos])
+
 		// always display the list of commands
 		display_commands()
 
@@ -223,9 +217,7 @@ func Run() {
 			switch user_input {
 			case "N":
 				{ // MOVE NORTH
-					fmt.Println("Current position:", current_player.current_pos)
 					current_player.current_pos = move_north(current_player.current_pos, total_states)
-					fmt.Println("Move North position:", current_player.current_pos)
 				}
 			case "S":
 				{ // MOVE SOUTH
@@ -235,7 +227,12 @@ func Run() {
 				}
 			case "L":
 				{ // LOOK
+					fmt.Println("Searching room")
 
+					// get any coffee items in the room (if exist)
+
+					// add to inventory (if coffee item exists)
+					//game_states[current_player.current_pos]
 				}
 			case "I":
 				{ // CHECK INVENTORY
