@@ -123,7 +123,6 @@ func create_room(room_pos int, room *Room) int {
 func check_input(in string) bool {
 
 	out := true
-	in = strings.ToUpper(in)
 
 	if !strings.EqualFold(in, "N") && !strings.EqualFold(in, "S") &&
 		!strings.EqualFold(in, "L") && !strings.EqualFold(in, "I") &&
@@ -193,8 +192,10 @@ if err != nil {
 fmt.Printf(line) */
 
 func Run() {
-	/* Create a reader */
+	/* Create a reader for user input*/
 	r := bufio.NewReader(os.Stdin)
+	//s := bufio.NewScanner(os.Stdin)
+	//var user_input string
 
 	/* Create current Player */
 	current_player := Player{0, 0, 0, 1}
@@ -207,7 +208,48 @@ func Run() {
 	fmt.Printf("Coffee Maker Quest 2.0\n")
 
 	for current_player.keep_going == 1 {
+		// always display the list of commands
 		display_commands()
-		r.ReadString(delim)
+
+		// get user input (normalized)
+		user_input, _ := r.ReadString(delim)
+		user_input = strings.TrimSpace(strings.ToUpper(user_input))
+
+		// figure out what to do
+		if check_input(user_input) == false {
+			fmt.Println("What?")
+
+		} else {
+			switch user_input {
+			case "N":
+				{ // MOVE NORTH
+					fmt.Println("Current position:", current_player.current_pos)
+					current_player.current_pos = move_north(current_player.current_pos, total_states)
+					fmt.Println("Move North position:", current_player.current_pos)
+				}
+			case "S":
+				{ // MOVE SOUTH
+					fmt.Println("Current position:", current_player.current_pos)
+					current_player.current_pos = move_south(current_player.current_pos, total_states)
+					fmt.Println("Move South position:", current_player.current_pos)
+				}
+			case "L":
+				{ // LOOK
+
+				}
+			case "I":
+				{ // CHECK INVENTORY
+					//current_player.bag_status = display_inventory
+				}
+			case "H":
+				{ // DISPLAY HELP
+					display_instructions()
+				}
+			case "D":
+				{ // DRINK UP YINZ B*TCHES
+
+				}
+			}
+		}
 	}
 }

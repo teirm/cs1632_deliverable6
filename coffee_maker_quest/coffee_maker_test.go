@@ -268,7 +268,7 @@ func Test_input_N(t *testing.T) {
 
 	input_1 := check_input("N")
 	if input_1 != true {
-		t.Fatalf("Exected true got false")
+		t.Fatalf("Expected true got false")
 	}
 }
 
@@ -276,7 +276,7 @@ func Test_input_D(t *testing.T) {
 
 	input_2 := check_input("D")
 	if input_2 != true {
-		t.Fatalf("Exected true got false")
+		t.Fatalf("Expected true got false")
 	}
 }
 
