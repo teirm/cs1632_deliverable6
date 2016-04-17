@@ -46,7 +46,13 @@ func move_north(cur_pos int, total_states int) int {
 
 /* MOVES THE PLAYER ONE ROOM SOUTH (IF POSSIBRU) */
 func move_south(cur_pos int, total_states int) int {
-	return 0
+	next_pos := cur_pos - 1
+
+	if next_pos >= 0 {
+		return next_pos
+	} else {
+		return cur_pos
+	}
 }
 
 /* PROCESSES BAG TO DETERMINE WIN/LOSS */
