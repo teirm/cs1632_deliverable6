@@ -79,14 +79,29 @@ func Test_move_north(t *testing.T) {
 	// consider a test room struct that
 	//		contains 5 rooms
 	total_rooms := 5
-	cur_room := 0 // zero-based
-	exp := 2
 
-	// try to move from room 0 to 1
-	act := move_north(cur_room, total_rooms)
+	// make sure we can move from room 0 to room[total_rooms]
+	var cur_room int 	// current room
+	var exp_room int 	// expected room (current+1)
+	var act_room int	// actual room
+	for i:=0; i<total_rooms; i++ {
+		cur_room = i
+		exp_room = cur_room+1
 
-	if exp != act {
-		t.Fatalf("Expected room %d, got room %d", exp, act)
+		// try to move north of current room
+		act_room = move_north(cur_room, total_rooms)
+
+		// special case is when cur_room is the northern-most
+		//		so we expect to stay in the same room
+		if cur_room==total_rooms-1 {
+			exp_room = total_rooms-1
+
+			if exp_room != act_room {
+				t.Fatalf("Expected room %d, got room %d", exp_room, act_room)
+			}
+		} else if exp_room != act_room {
+			t.Fatalf("Expected room %d, got room %d", exp_room, act_room)
+		}
 	}
 }
 
