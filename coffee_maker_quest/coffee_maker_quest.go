@@ -186,9 +186,8 @@ func display_inventory(inventory []string) int {
 
 /* DISPLAY ROOM DESCRIPTION */
 func display_room(room Room) string {
-	var description string = "\nYou see a " + room.room_adj + " room.\n"
-
 	// what kind of room
+	var description string = "\nYou see a " + room.room_adj + " room.\n"
 
 	// what kind of item in the room
 	description += "It has a " + room.furniture + ".\n"
@@ -207,7 +206,7 @@ func display_room(room Room) string {
 }
 
 /* LOOK IN ROOM AND RETURN COFFEE ITEM (IF EXISTS) */
-func look_in_room(room Room) string {
+func search_room_for_coffee_items(room Room) string {
 	return ""
 }
 
@@ -218,8 +217,6 @@ func search_room(item string, inventory []string) int {
 func Run() {
 	/* Create a reader for user input*/
 	r := bufio.NewReader(os.Stdin)
-	//s := bufio.NewScanner(os.Stdin)
-	//var user_input string
 
 	/* Create current Player */
 	current_player := Player{0, 0, 0, 1}
@@ -232,7 +229,6 @@ func Run() {
 	fmt.Printf("Coffee Maker Quest 2.0 (Golang Edition)\n")
 
 	// the game needs an inventory of what the player has collected
-	//var inventory Inventory
 	var inventory [inventory_slots]string
 
 	for current_player.keep_going == 1 {

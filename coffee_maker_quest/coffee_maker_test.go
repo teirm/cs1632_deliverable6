@@ -29,18 +29,20 @@ func Test_example(t *testing.T) {
 /* Current room has Coffee */
 func Test_coffee_room(t *testing.T) {
 
-	const inv_size = 3
-	var inventory [inv_size]string
+	//const inv_size = 3
+	//var inventory [inv_size]string
 
-	exp := 1
-	act := search_room("Coffee", inventory[:])
+	// create a test room (using the Coffee room)
+	var room_pos = 0
+	var test_room Room
+	create_room(room_pos, &test_room)
+
+	// the item in this room should be "Coffee"
+	exp := "Coffee"
+	act := search_room_for_coffee_items(test_room)
 
 	if exp != act {
-		t.Fatalf("Expected %d got %d", exp, act)
-	}
-
-	if inventory[0] != "Coffee" {
-		t.Fatalf("Expected %s got %s", inventory[0], "Coffee")
+		t.Fatalf("Expected %s got %s", exp, act)
 	}
 }
 
