@@ -235,8 +235,18 @@ func search_room_for_coffee_items(room Room, inventory []string) string {
 	return ""
 }
 
+/* DRINK; DETERMINE IF WIN OR LOSE */
 func drink(current_player Player, inventory []string) int {
-	return 1
+	current_player.coffee_items = display_inventory(inventory[:])
+	status := process_bag(current_player.coffee_items)
+
+	if status == 1 {
+		fmt.Println("\nYou Win!")
+	} else {
+		fmt.Println("\nYou Lose!")
+	}
+
+	return status
 }
 
 func Run() {
@@ -297,14 +307,7 @@ func Run() {
 				}
 			case "D":
 				{ // DRINK
-					current_player.coffee_items = display_inventory(inventory[:])
-					current_player.win_status = process_bag(current_player.coffee_items)
-
-					if current_player.win_status == 1 {
-						fmt.Println("\nYou Win!")
-					} else {
-						fmt.Println("\nYou Lose!")
-					}
+					current_player.win_status = drink(current_player, inventory[:])
 
 					// stop
 					current_player.keep_going = 0
