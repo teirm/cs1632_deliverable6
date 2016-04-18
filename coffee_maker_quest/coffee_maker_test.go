@@ -46,6 +46,7 @@ func Test_coffee_room(t *testing.T) {
 	}
 }
 
+/* Current room has Cream */
 func Test_cream_room(t *testing.T) {
 
 	const inv_size = 3
@@ -65,6 +66,7 @@ func Test_cream_room(t *testing.T) {
 	}
 }
 
+/* Current room has Sugar */
 func Test_sugar_room(t *testing.T) {
 
 	const inv_size = 3
@@ -84,6 +86,7 @@ func Test_sugar_room(t *testing.T) {
 	}
 }
 
+/* Current room has no coffee item */
 func Test_empty_room(t *testing.T) {
 
 	const inv_size = 3
@@ -535,6 +538,47 @@ func Test_inv_pos_invariance(t *testing.T) {
 
 	if exp != (act_1 - act_2) {
 		t.Fatalf("Expected %d got %d (%d - %d)", exp, act_1-act_2, act_1, act_2)
+	}
+}
+
+/* Test drinking without all items */
+func Test_drink_missing_items(t *testing.T) {
+	// create a player
+	current_player := Player{0, 0, 0, 1}
+
+	// create an inventory
+	const inventory_size = 3
+	var inventory [inventory_size]string
+
+	// test drinking coffee items with empty inventory
+	exp := false
+	act := drink(current_player, inventory[:])
+
+	if exp != act {
+		t.Fatalf("Expected %t got %t", exp, act)
+	}
+}
+
+/* Test drinking without all items */
+func Test_drink_all_items(t *testing.T) {
+	// create a player
+	current_player := Player{0, 0, 0, 1}
+
+	// create an inventory
+	const inventory_size = 3
+	var inventory [inventory_size]string
+
+	// fill inventory with all items
+	inventory[0] = "Coffee"
+	inventory[1] = "Cream"
+	inventory[2] = "Sugar"
+
+	// test drinking coffee items with empty inventory
+	exp := true
+	act := drink(current_player, inventory[:])
+
+	if exp != act {
+		t.Fatalf("Expected %t got %t", exp, act)
 	}
 }
 
