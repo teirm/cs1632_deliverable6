@@ -148,7 +148,7 @@ func display_inventory(inventory []string) int {
 
 	for i := 0; i < len(inventory); i++ {
 		if strings.EqualFold(inventory[i], "Coffee") {
-			has_coffee = 0x001
+			has_coffee = 1
 			fmt.Printf("You have a cup of delicious coffee.\n")
 			break
 		}
@@ -160,7 +160,7 @@ func display_inventory(inventory []string) int {
 
 	for i := 0; i < len(inventory); i++ {
 		if strings.EqualFold(inventory[i], "Cream") {
-			has_cream = 0x010
+			has_cream = 2
 			fmt.Printf("You have some fresh cream.\n")
 			break
 		}
@@ -172,7 +172,7 @@ func display_inventory(inventory []string) int {
 
 	for i := 0; i < len(inventory); i++ {
 		if strings.EqualFold(inventory[i], "Sugar") {
-			has_sugar = 0x100
+			has_sugar = 4
 			fmt.Printf("You have some fresh sugar.\n")
 		}
 	}
@@ -181,10 +181,14 @@ func display_inventory(inventory []string) int {
 		fmt.Printf("YOU HAVE NO SUGAR!\n")
 	}
 
-	// WHYYYYYYY
-	fmt.Println("has_coffee | has_cream | has_sugar :", has_coffee|has_cream|has_sugar)
+	fmt.Println("has_coffee :", has_coffee)
+	fmt.Println("has_cream: ", has_cream)
+	fmt.Println("has_sugar: ", has_sugar)
 
-	return has_coffee | has_cream | has_sugar
+	// WHYYYYYYY
+	//fmt.Println("has_coffee | has_cream | has_sugar :", has_coffee+has_cream+has_sugar)
+
+	return has_coffee + has_cream + has_sugar
 }
 
 /* DISPLAY ROOM DESCRIPTION */
