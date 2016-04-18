@@ -206,6 +206,11 @@ func display_room(room Room) string {
 	return description
 }
 
+/* LOOK IN ROOM AND RETURN COFFEE ITEM (IF EXISTS) */
+func look_in_room(room Room) string {
+	return ""
+}
+
 func search_room(item string, inventory []string) int {
 	return 3
 }
