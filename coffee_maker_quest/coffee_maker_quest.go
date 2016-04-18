@@ -239,6 +239,10 @@ func search_room(item string, inventory []string) int {
 	return 3
 }
 
+func drink(current_player Player, inventory []string) bool {
+	return true
+}
+
 func Run() {
 	/* Create a reader for user input*/
 	r := bufio.NewReader(os.Stdin)
