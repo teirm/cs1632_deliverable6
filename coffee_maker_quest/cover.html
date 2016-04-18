@@ -54,7 +54,7 @@
 			<div id="nav">
 				<select id="files">
 				
-				<option value="file0">github.com\teirm\cs1632_deliverable6\coffee_maker_quest\coffee_maker_quest.go (91.4%)</option>
+				<option value="file0">github.com\teirm\cs1632_deliverable6\coffee_maker_quest\coffee_maker_quest.go (91.3%)</option>
 				
 				</select>
 			</div>
@@ -76,6 +76,15 @@ import (
         "os"
         "strings"
 )
+
+/*
+        CS1632 Final Deliverable (Spring 2016)
+
+        AUTHORS:
+
+        Cyrus Ramavarapu        (crr41@pitt.edu)
+        Joe Meszar                        (jwm54@pitt.edu)
+*/
 
 /* Structs */
 type Room struct {
@@ -330,12 +339,10 @@ func play(current_player Player, rooms []Room, inventory []string, user_input st
                 <span class="cov8" title="1">case "N": // MOVE NORTH
                         </span><span class="cov8" title="1">{
                                 current_player.room_num = move_north(current_player.room_num, total_states)
-                                fmt.Println(display_room(rooms[current_player.room_num]))
                         }</span>
                 <span class="cov8" title="1">case "S": // MOVE SOUTH
                         </span><span class="cov8" title="1">{
                                 current_player.room_num = move_south(current_player.room_num, total_states)
-                                fmt.Println(display_room(rooms[current_player.room_num]))
                         }</span>
                 <span class="cov8" title="1">case "L": // LOOK
                         </span><span class="cov8" title="1">{
@@ -377,7 +384,7 @@ func Run() <span class="cov0" title="0">{
 
         for current_player.keep_going == 1 </span><span class="cov0" title="0">{
                 // always display the room
-                fmt.Println(display_room(rooms[current_player.room_num]))
+                fmt.Printf(display_room(rooms[current_player.room_num]))
 
                 // always display the list of commands
                 display_commands()

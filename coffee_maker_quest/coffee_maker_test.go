@@ -1,12 +1,25 @@
-/*Process for committing:
-  Commit just test + min to compile
-  Commit green
-  Commit Refactor
+/*
+	CS1632 Final Deliverable (Spring 2016)
 
-  Creating code coverage:
-  1) go test -coverprofile cover.out
-  2) go tool cover -html=cover.out -o cover.html
-  3) open cover.html in browser
+	AUTHORS:
+
+	Cyrus Ramavarapu	(crr41@pitt.edu)
+	Joe Meszar			(jwm54@pitt.edu)
+*/
+
+/*
+	Process for committing:
+
+	Commit just test + min to compile
+	Commit green
+	Commit Refactor
+
+
+	Creating code coverage:
+
+	1) go test -coverprofile cover.out
+	2) go tool cover -html=cover.out -o cover.html
+	3) open cover.html in browser
 */
 
 /* Name of Directory containing file */

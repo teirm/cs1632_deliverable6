@@ -7,6 +7,15 @@ import (
 	"strings"
 )
 
+/*
+	CS1632 Final Deliverable (Spring 2016)
+
+	AUTHORS:
+
+	Cyrus Ramavarapu	(crr41@pitt.edu)
+	Joe Meszar			(jwm54@pitt.edu)
+*/
+
 /* Structs */
 type Room struct {
 	north_door string
