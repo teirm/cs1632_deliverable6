@@ -551,11 +551,11 @@ func Test_drink_missing_items(t *testing.T) {
 	var inventory [inventory_size]string
 
 	// test drinking coffee items with empty inventory
-	exp := false
+	exp := 0
 	act := drink(current_player, inventory[:])
 
 	if exp != act {
-		t.Fatalf("Expected %t got %t", exp, act)
+		t.Fatalf("Expected %d got %d", exp, act)
 	}
 }
 
@@ -574,11 +574,11 @@ func Test_drink_all_items(t *testing.T) {
 	inventory[2] = "Sugar"
 
 	// test drinking coffee items with empty inventory
-	exp := true
+	exp := 1
 	act := drink(current_player, inventory[:])
 
 	if exp != act {
-		t.Fatalf("Expected %t got %t", exp, act)
+		t.Fatalf("Expected %d got %d", exp, act)
 	}
 }
 

@@ -235,12 +235,8 @@ func search_room_for_coffee_items(room Room, inventory []string) string {
 	return ""
 }
 
-func search_room(item string, inventory []string) int {
-	return 3
-}
-
-func drink(current_player Player, inventory []string) bool {
-	return true
+func drink(current_player Player, inventory []string) int {
+	return 1
 }
 
 func Run() {
