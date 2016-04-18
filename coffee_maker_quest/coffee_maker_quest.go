@@ -294,7 +294,7 @@ func Run() {
 					display_instructions()
 				}
 			case "D":
-				{ // DRINK UP YINZ B*TCHES
+				{ // DRINK
 					current_player.coffee_items = display_inventory(inventory[:])
 					current_player.win_status = process_bag(current_player.coffee_items)
 
