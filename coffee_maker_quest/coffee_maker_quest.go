@@ -260,12 +260,10 @@ func play(current_player Player, rooms []Room, inventory []string, user_input st
 		case "N": // MOVE NORTH
 			{
 				current_player.room_num = move_north(current_player.room_num, total_states)
-				fmt.Println(display_room(rooms[current_player.room_num]))
 			}
 		case "S": // MOVE SOUTH
 			{
 				current_player.room_num = move_south(current_player.room_num, total_states)
-				fmt.Println(display_room(rooms[current_player.room_num]))
 			}
 		case "L": // LOOK
 			{
@@ -307,7 +305,7 @@ func Run() {
 
 	for current_player.keep_going == 1 {
 		// always display the room
-		fmt.Println(display_room(rooms[current_player.room_num]))
+		fmt.Printf(display_room(rooms[current_player.room_num]))
 
 		// always display the list of commands
 		display_commands()
