@@ -559,6 +559,50 @@ func Test_drink_missing_items(t *testing.T) {
 	}
 }
 
+/* Test play function to continue */
+func Test_play_continue(t *testing.T) {
+	// create a player
+	current_player := Player{0, 0, 0, 1}
+
+	// create the rooms
+	const total_states = 3 //Total number of inventory slots
+	var rooms [total_states]Room
+	init_game(rooms[:])
+
+	// create an inventory
+	const inventory_size = 3
+	var inventory [inventory_size]string
+
+	exp := 1
+	act := play(current_player, rooms[:], inventory[:])
+
+	if exp != act {
+		t.Fatalf("Expected %d got %d", exp, act)
+	}
+}
+
+/* Test play function to end */
+func Test_play_end(t *testing.T) {
+	// create a player
+	current_player := Player{0, 0, 0, 1}
+
+	// create the rooms
+	const total_states = 3 //Total number of inventory slots
+	var rooms [total_states]Room
+	init_game(rooms[:])
+
+	// create an inventory
+	const inventory_size = 3
+	var inventory [inventory_size]string
+
+	exp := 0
+	act := play(current_player, rooms[:], inventory[:])
+
+	if exp != act {
+		t.Fatalf("Expected %d got %d", exp, act)
+	}
+}
+
 /* Test drinking without all items */
 func Test_drink_all_items(t *testing.T) {
 	// create a player

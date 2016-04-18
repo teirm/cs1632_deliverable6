@@ -249,6 +249,10 @@ func drink(current_player Player, inventory []string) int {
 	return status
 }
 
+func play(current_player Player, rooms []Room, inventory []string) int {
+	return 1
+}
+
 func Run() {
 	/* Create a reader for user input*/
 	r := bufio.NewReader(os.Stdin)
@@ -283,34 +287,33 @@ func Run() {
 
 		} else {
 			switch user_input {
-			case "N":
-				{ // MOVE NORTH
+			case "N": // MOVE NORTH
+				{
 					current_player.room_num = move_north(current_player.room_num, total_states)
 					fmt.Println(display_room(rooms[current_player.room_num]))
 				}
-			case "S":
-				{ // MOVE SOUTH
+			case "S": // MOVE SOUTH
+				{
 					current_player.room_num = move_south(current_player.room_num, total_states)
 					fmt.Println(display_room(rooms[current_player.room_num]))
 				}
-			case "L":
-				{ // LOOK
+			case "L": // LOOK
+				{
 					search_room_for_coffee_items(rooms[current_player.room_num], inventory[:])
 				}
-			case "I":
-				{ // CHECK INVENTORY
+			case "I": // CHECK INVENTORY
+				{
 					current_player.coffee_items = display_inventory(inventory[:])
 				}
-			case "H":
-				{ // DISPLAY HELP
+			case "H": // DISPLAY HELP
+				{
 					display_instructions()
 				}
-			case "D":
-				{ // DRINK
+			case "D": // DRINK
+				{
 					current_player.win_status = drink(current_player, inventory[:])
 
-					// stop
-					current_player.keep_going = 0
+					current_player.keep_going = 0 // stop
 				}
 			}
 		}
