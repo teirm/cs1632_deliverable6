@@ -24,6 +24,73 @@ func Test_example(t *testing.T) {
 	RunSpecs(t, "Coffee Maker Quest")
 }
 
+/* Search room tests */
+
+/* Current room has Coffee */
+func Test_coffee_room(t *testing.T) {
+
+	const inv_size = 3
+	var inventory [inv_size]string
+
+	exp := 1
+	act := search_room("Coffee", inventory[:])
+
+	if exp != act {
+		t.Fatalf("Expected %d got %d", exp, act)
+	}
+
+	if inventory[0] != "Coffee" {
+		t.Fatalf("Expected %s got %s", inventory[0], "Coffee")
+	}
+}
+
+func Test_cream_room(t *testing.T) {
+
+	const inv_size = 3
+	var inventory [inv_size]string
+
+	exp := 2
+	act := search_room("x", inventory[:])
+
+	if exp != act {
+		t.Fatalf("Expected %d got %d", exp, act)
+	}
+
+	if inventory[1] != "Cream" {
+		t.Fatalf("Expected %s got %s", inventory[1], "Cream")
+	}
+}
+
+func Test_sugar_room(t *testing.T) {
+
+	const inv_size = 3
+	var inventory [inv_size]string
+
+	exp := 3
+	act := search_room("x", inventory[:])
+
+	if exp != act {
+		t.Fatalf("Expected %d got %d", exp, act)
+	}
+
+	if inventory[1] != "Sugar" {
+		t.Fatalf("Expected %s got %s", inventory[2], "Sugar")
+	}
+}
+
+func Test_empty_room(t *testing.T) {
+
+	const inv_size = 3
+	var inventory [inv_size]string
+
+	exp := 4
+	act := search_room("x", inventory[:])
+
+	if exp != act {
+		t.Fatalf("Expected %d got %d", exp, act)
+	}
+}
+
 /* Process Bag Tests */
 func Test_empty_bag(t *testing.T) {
 

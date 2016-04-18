@@ -206,6 +206,10 @@ func display_room(room Room) string {
 	return description
 }
 
+func search_room(item string, inventory []string) int {
+	return 3
+}
+
 func Run() {
 	/* Create a reader for user input*/
 	r := bufio.NewReader(os.Stdin)
