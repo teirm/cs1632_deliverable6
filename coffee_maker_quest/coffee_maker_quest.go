@@ -17,7 +17,7 @@ type Room struct {
 }
 
 type Player struct {
-	room         int
+	room_num     int
 	win_status   int
 	coffee_items int
 	keep_going   int
@@ -206,7 +206,32 @@ func display_room(room Room) string {
 }
 
 /* LOOK IN ROOM AND RETURN COFFEE ITEM (IF EXISTS) */
-func search_room_for_coffee_items(room Room) string {
+func search_room_for_coffee_items(room Room, inventory []string) string {
+	fmt.Println("Searching room")
+
+	switch room.item {
+	case "Coffee", "Cream", "Sugar":
+		{
+			fmt.Println("There might be something here...")
+			fmt.Println("You found some", room.item)
+
+			// add to inventory
+			if room.item == "Coffee" {
+				inventory[0] = room.item
+			} else if room.item == "Cream" {
+				inventory[1] = room.item
+			} else {
+				inventory[2] = room.item
+			}
+
+			return room.item
+		}
+	default:
+		{
+			fmt.Println("You don't see anything out of the ordinary.")
+		}
+	}
+
 	return ""
 }
 
@@ -233,7 +258,7 @@ func Run() {
 
 	for current_player.keep_going == 1 {
 		// always display the room
-		display_room(rooms[current_player.room])
+		display_room(rooms[current_player.room_num])
 
 		// always display the list of commands
 		display_commands()
@@ -250,45 +275,17 @@ func Run() {
 			switch user_input {
 			case "N":
 				{ // MOVE NORTH
-					current_player.room = move_north(current_player.room, total_states)
-					fmt.Println(display_room(rooms[current_player.room]))
+					current_player.room_num = move_north(current_player.room_num, total_states)
+					fmt.Println(display_room(rooms[current_player.room_num]))
 				}
 			case "S":
 				{ // MOVE SOUTH
-					current_player.room = move_south(current_player.room, total_states)
-					fmt.Println(display_room(rooms[current_player.room]))
+					current_player.room_num = move_south(current_player.room_num, total_states)
+					fmt.Println(display_room(rooms[current_player.room_num]))
 				}
 			case "L":
 				{ // LOOK
-					fmt.Println("Searching room")
-
-					// get any coffee items in the room (if exist)
-					switch rooms[current_player.room].item {
-					case "Coffee", "Cream", "Sugar":
-						{
-							fmt.Println("There might be something here...")
-							fmt.Println("You found some", rooms[current_player.room].item)
-
-							switch rooms[current_player.room].item {
-							case "Coffee":
-								{
-									inventory[0] = "Coffee"
-								}
-							case "Cream":
-								{
-									inventory[1] = "Cream"
-								}
-							case "Sugar":
-								{
-									inventory[2] = "Sugar"
-								}
-							}
-						}
-					default:
-						{
-							fmt.Println("You don't see anything out of the ordinary.")
-						}
-					}
+					search_room_for_coffee_items(rooms[current_player.room_num], inventory[:])
 				}
 			case "I":
 				{ // CHECK INVENTORY

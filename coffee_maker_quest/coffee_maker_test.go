@@ -29,17 +29,17 @@ func Test_example(t *testing.T) {
 /* Current room has Coffee */
 func Test_coffee_room(t *testing.T) {
 
-	//const inv_size = 3
-	//var inventory [inv_size]string
+	const inv_size = 3
+	var inventory [inv_size]string
 
 	// create a test room (using the Coffee room)
-	var room_pos = 0
+	var room_pos = 3
 	var test_room Room
 	create_room(room_pos, &test_room)
 
 	// the item in this room should be "Coffee"
 	exp := "Coffee"
-	act := search_room_for_coffee_items(test_room)
+	act := search_room_for_coffee_items(test_room, inventory[:])
 
 	if exp != act {
 		t.Fatalf("Expected %s got %s", exp, act)
@@ -51,15 +51,17 @@ func Test_cream_room(t *testing.T) {
 	const inv_size = 3
 	var inventory [inv_size]string
 
-	exp := 2
-	act := search_room("x", inventory[:])
+	// create a test room (using the Coffee room)
+	var room_pos = 0
+	var test_room Room
+	create_room(room_pos, &test_room)
+
+	// the item in this room should be "Coffee"
+	exp := "Cream"
+	act := search_room_for_coffee_items(test_room, inventory[:])
 
 	if exp != act {
-		t.Fatalf("Expected %d got %d", exp, act)
-	}
-
-	if inventory[1] != "Cream" {
-		t.Fatalf("Expected %s got %s", inventory[1], "Cream")
+		t.Fatalf("Expected %s got %s", exp, act)
 	}
 }
 
@@ -68,15 +70,17 @@ func Test_sugar_room(t *testing.T) {
 	const inv_size = 3
 	var inventory [inv_size]string
 
-	exp := 3
-	act := search_room("x", inventory[:])
+	// create a test room (using the Coffee room)
+	var room_pos = 5
+	var test_room Room
+	create_room(room_pos, &test_room)
+
+	// the item in this room should be "Coffee"
+	exp := "Sugar"
+	act := search_room_for_coffee_items(test_room, inventory[:])
 
 	if exp != act {
-		t.Fatalf("Expected %d got %d", exp, act)
-	}
-
-	if inventory[1] != "Sugar" {
-		t.Fatalf("Expected %s got %s", inventory[2], "Sugar")
+		t.Fatalf("Expected %s got %s", exp, act)
 	}
 }
 
@@ -85,11 +89,17 @@ func Test_empty_room(t *testing.T) {
 	const inv_size = 3
 	var inventory [inv_size]string
 
-	exp := 4
-	act := search_room("x", inventory[:])
+	// create a test room (using the Coffee room)
+	var room_pos = 2
+	var test_room Room
+	create_room(room_pos, &test_room)
+
+	// the item in this room should be "Coffee"
+	exp := ""
+	act := search_room_for_coffee_items(test_room, inventory[:])
 
 	if exp != act {
-		t.Fatalf("Expected %d got %d", exp, act)
+		t.Fatalf("Expected %s got %s", exp, act)
 	}
 }
 
