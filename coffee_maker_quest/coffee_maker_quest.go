@@ -181,13 +181,6 @@ func display_inventory(inventory []string) int {
 		fmt.Printf("YOU HAVE NO SUGAR!\n")
 	}
 
-	fmt.Println("has_coffee :", has_coffee)
-	fmt.Println("has_cream: ", has_cream)
-	fmt.Println("has_sugar: ", has_sugar)
-
-	// WHYYYYYYY
-	//fmt.Println("has_coffee | has_cream | has_sugar :", has_coffee+has_cream+has_sugar)
-
 	return has_coffee + has_cream + has_sugar
 }
 
@@ -304,10 +297,6 @@ func Run() {
 				{ // DRINK UP YINZ B*TCHES
 					current_player.coffee_items = display_inventory(inventory[:])
 					current_player.win_status = process_bag(current_player.coffee_items)
-
-					// WHYYYY
-					fmt.Println("coffee items:", current_player.coffee_items)
-					fmt.Println("win status:", current_player.win_status)
 
 					if current_player.win_status == 1 {
 						fmt.Println("\nYou Win!")
