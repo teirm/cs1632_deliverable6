@@ -54,7 +54,7 @@
 			<div id="nav">
 				<select id="files">
 				
-				<option value="file0">github.com\teirm\cs1632_deliverable6\coffee_maker_quest\coffee_maker_quest.go (76.4%)</option>
+				<option value="file0">github.com\teirm\cs1632_deliverable6\coffee_maker_quest\coffee_maker_quest.go (91.4%)</option>
 				
 				</select>
 			</div>
@@ -140,6 +140,7 @@ func display_commands() bool <span class="cov8" title="1">{
 
 /* INITIALIZE GAME */
 func init_game(array []Room) <span class="cov8" title="1">{
+        fmt.Printf("Coffee Maker Quest 2.0 (Golang Edition)\n")
 
         for i := 0; i &lt; len(array); i++ </span><span class="cov8" title="1">{
                 create_room(i, &amp;array[i])
@@ -319,6 +320,47 @@ func drink(current_player Player, inventory []string) int <span class="cov8" tit
         <span class="cov8" title="1">return status</span>
 }
 
+func play(current_player Player, rooms []Room, inventory []string, user_input string) Player <span class="cov8" title="1">{
+        // figure out what to do
+        if check_input(user_input) == false </span><span class="cov8" title="1">{
+                fmt.Println("What?")
+
+        }</span><span class="cov8" title="1"> else {
+                switch user_input </span>{
+                <span class="cov8" title="1">case "N": // MOVE NORTH
+                        </span><span class="cov8" title="1">{
+                                current_player.room_num = move_north(current_player.room_num, total_states)
+                                fmt.Println(display_room(rooms[current_player.room_num]))
+                        }</span>
+                <span class="cov8" title="1">case "S": // MOVE SOUTH
+                        </span><span class="cov8" title="1">{
+                                current_player.room_num = move_south(current_player.room_num, total_states)
+                                fmt.Println(display_room(rooms[current_player.room_num]))
+                        }</span>
+                <span class="cov8" title="1">case "L": // LOOK
+                        </span><span class="cov8" title="1">{
+                                search_room_for_coffee_items(rooms[current_player.room_num], inventory[:])
+                        }</span>
+                <span class="cov8" title="1">case "I": // CHECK INVENTORY
+                        </span><span class="cov8" title="1">{
+                                current_player.coffee_items = display_inventory(inventory[:])
+                        }</span>
+                <span class="cov8" title="1">case "H": // DISPLAY HELP
+                        </span><span class="cov8" title="1">{
+                                display_instructions()
+                        }</span>
+                <span class="cov8" title="1">case "D": // DRINK
+                        </span><span class="cov8" title="1">{
+                                current_player.win_status = drink(current_player, inventory[:])
+
+                                current_player.keep_going = 0 // stop
+                        }</span>
+                }
+        }
+
+        <span class="cov8" title="1">return current_player</span>
+}
+
 func Run() <span class="cov0" title="0">{
         /* Create a reader for user input*/
         r := bufio.NewReader(os.Stdin)
@@ -330,15 +372,12 @@ func Run() <span class="cov0" title="0">{
         var rooms [total_states]Room
         init_game(rooms[:])
 
-        fmt.Println("Player is: ", current_player)
-        fmt.Printf("Coffee Maker Quest 2.0 (Golang Edition)\n")
-
         // the game needs an inventory of what the player has collected
         var inventory [inventory_slots]string
 
         for current_player.keep_going == 1 </span><span class="cov0" title="0">{
                 // always display the room
-                display_room(rooms[current_player.room_num])
+                fmt.Println(display_room(rooms[current_player.room_num]))
 
                 // always display the list of commands
                 display_commands()
@@ -348,42 +387,8 @@ func Run() <span class="cov0" title="0">{
                 user_input = strings.TrimSpace(strings.ToUpper(user_input))
 
                 // figure out what to do
-                if check_input(user_input) == false </span><span class="cov0" title="0">{
-                        fmt.Println("What?")
-
-                }</span><span class="cov0" title="0"> else {
-                        switch user_input </span>{
-                        <span class="cov0" title="0">case "N":
-                                </span><span class="cov0" title="0">{ // MOVE NORTH
-                                        current_player.room_num = move_north(current_player.room_num, total_states)
-                                        fmt.Println(display_room(rooms[current_player.room_num]))
-                                }</span>
-                        <span class="cov0" title="0">case "S":
-                                </span><span class="cov0" title="0">{ // MOVE SOUTH
-                                        current_player.room_num = move_south(current_player.room_num, total_states)
-                                        fmt.Println(display_room(rooms[current_player.room_num]))
-                                }</span>
-                        <span class="cov0" title="0">case "L":
-                                </span><span class="cov0" title="0">{ // LOOK
-                                        search_room_for_coffee_items(rooms[current_player.room_num], inventory[:])
-                                }</span>
-                        <span class="cov0" title="0">case "I":
-                                </span><span class="cov0" title="0">{ // CHECK INVENTORY
-                                        current_player.coffee_items = display_inventory(inventory[:])
-                                }</span>
-                        <span class="cov0" title="0">case "H":
-                                </span><span class="cov0" title="0">{ // DISPLAY HELP
-                                        display_instructions()
-                                }</span>
-                        <span class="cov0" title="0">case "D":
-                                </span><span class="cov0" title="0">{ // DRINK
-                                        current_player.win_status = drink(current_player, inventory[:])
-
-                                        current_player.keep_going = 0 // stop
-                                }</span>
-                        }
-                }
-        }
+                current_player = play(current_player, rooms[:], inventory[:], user_input)
+        }</span>
 }
 </pre>
 		

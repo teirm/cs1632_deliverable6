@@ -2,6 +2,11 @@
   Commit just test + min to compile
   Commit green
   Commit Refactor
+
+  Creating code coverage:
+  1) go test -coverprofile cover.out
+  2) go tool cover -html=cover.out -o cover.html
+  3) open cover.html in browser
 */
 
 /* Name of Directory containing file */
@@ -9,10 +14,8 @@ package coffee_maker_quest
 
 /* Testing imports */
 import (
-	"bufio"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
-	"os"
 	"strings"
 	"testing"
 )
@@ -561,10 +564,10 @@ func Test_drink_missing_items(t *testing.T) {
 	}
 }
 
-/* Test play function to continue */
-func Test_play_continue(t *testing.T) {
-	// create a reader for user input
-	r := bufio.NewReader(os.Stdin)
+/* Test play function to move North */
+func Test_play_north(t *testing.T) {
+	// create user input
+	user_input := "N"
 
 	// create a player
 	current_player := Player{0, 0, 0, 1}
@@ -577,19 +580,78 @@ func Test_play_continue(t *testing.T) {
 	// create an inventory
 	const inventory_size = 3
 	var inventory [inventory_size]string
+	inventory[0] = "Coffee"
+	inventory[1] = "Cream"
+	inventory[2] = "Sugar"
 
 	exp := 1
-	act := play(current_player, rooms[:], inventory[:], r)
+	act := play(current_player, rooms[:], inventory[:], user_input)
+
+	if exp != act.room_num {
+		t.Fatalf("Expected %d got %d", exp, act.room_num)
+	}
+}
+
+/* Test play function to move South */
+func Test_play_south(t *testing.T) {
+	// create user input
+	user_input := "S"
+
+	// create a player
+	current_player := Player{0, 0, 0, 1}
+
+	// create the rooms
+	const total_states = 3 //Total number of inventory slots
+	var rooms [total_states]Room
+	init_game(rooms[:])
+
+	// create an inventory
+	const inventory_size = 3
+	var inventory [inventory_size]string
+	inventory[0] = "Coffee"
+	inventory[1] = "Cream"
+	inventory[2] = "Sugar"
+
+	exp := 0
+	act := play(current_player, rooms[:], inventory[:], user_input)
+
+	if exp != act.room_num {
+		t.Fatalf("Expected %d got %d", exp, act.room_num)
+	}
+}
+
+/* Test play function on bad input */
+func Test_play_bad_input(t *testing.T) {
+	// create user input
+	user_input := "X"
+
+	// create a player
+	current_player := Player{0, 0, 0, 1}
+
+	// create the rooms
+	const total_states = 3 //Total number of inventory slots
+	var rooms [total_states]Room
+	init_game(rooms[:])
+
+	// create an inventory
+	const inventory_size = 3
+	var inventory [inventory_size]string
+	inventory[0] = "Coffee"
+	inventory[1] = "Cream"
+	inventory[2] = "Sugar"
+
+	exp := current_player
+	act := play(current_player, rooms[:], inventory[:], user_input)
 
 	if exp != act {
 		t.Fatalf("Expected %d got %d", exp, act)
 	}
 }
 
-/* Test play function to end */
-func Test_play_end(t *testing.T) {
-	// create a reader for user input
-	r := bufio.NewReader(os.Stdin)
+/* Test play function to Look */
+func Test_play_look(t *testing.T) {
+	// create user input
+	user_input := "L"
 
 	// create a player
 	current_player := Player{0, 0, 0, 1}
@@ -602,12 +664,126 @@ func Test_play_end(t *testing.T) {
 	// create an inventory
 	const inventory_size = 3
 	var inventory [inventory_size]string
+	inventory[0] = "Coffee"
+	inventory[1] = "Cream"
+	inventory[2] = "Sugar"
 
-	exp := 0
-	act := play(current_player, rooms[:], inventory[:], r)
+	exp := current_player
+	act := play(current_player, rooms[:], inventory[:], user_input)
 
 	if exp != act {
 		t.Fatalf("Expected %d got %d", exp, act)
+	}
+}
+
+/* Test play function to check the inventory */
+func Test_play_check_inventory(t *testing.T) {
+	// create user input
+	user_input := "I"
+
+	// create a player
+	current_player := Player{0, 0, 0, 1}
+
+	// create the rooms
+	const total_states = 3 //Total number of inventory slots
+	var rooms [total_states]Room
+	init_game(rooms[:])
+
+	// create an inventory
+	const inventory_size = 3
+	var inventory [inventory_size]string
+	inventory[0] = "Coffee"
+	inventory[1] = "Cream"
+	inventory[2] = "Sugar"
+
+	exp := 7
+	act := play(current_player, rooms[:], inventory[:], user_input)
+
+	if exp != act.coffee_items {
+		t.Fatalf("Expected %d got %d", exp, act.coffee_items)
+	}
+}
+
+/* Test play function to display help */
+func Test_play_show_help(t *testing.T) {
+	// create user input
+	user_input := "H"
+
+	// create a player
+	current_player := Player{0, 0, 0, 1}
+
+	// create the rooms
+	const total_states = 3 //Total number of inventory slots
+	var rooms [total_states]Room
+	init_game(rooms[:])
+
+	// create an inventory
+	const inventory_size = 3
+	var inventory [inventory_size]string
+	inventory[0] = "Coffee"
+	inventory[1] = "Cream"
+	inventory[2] = "Sugar"
+
+	exp := current_player
+	act := play(current_player, rooms[:], inventory[:], user_input)
+
+	if exp != act {
+		t.Fatalf("Expected %d got %d", exp, act)
+	}
+}
+
+/* Test play function to win */
+func Test_play_win(t *testing.T) {
+	// create user input
+	user_input := "D"
+
+	// create a player
+	current_player := Player{0, 0, 0, 1}
+
+	// create the rooms
+	const total_states = 3 //Total number of inventory slots
+	var rooms [total_states]Room
+	init_game(rooms[:])
+
+	// create an inventory
+	const inventory_size = 3
+	var inventory [inventory_size]string
+	inventory[0] = "Coffee"
+	inventory[1] = "Cream"
+	inventory[2] = "Sugar"
+
+	exp := 1
+	act := play(current_player, rooms[:], inventory[:], user_input)
+
+	if exp != act.win_status {
+		t.Fatalf("Expected %d got %d", exp, act.win_status)
+	}
+}
+
+/* Test play function to lose */
+func Test_play_lose(t *testing.T) {
+	// create user input
+	user_input := "D"
+
+	// create a player
+	current_player := Player{0, 0, 0, 1}
+
+	// create the rooms
+	const total_states = 3 //Total number of inventory slots
+	var rooms [total_states]Room
+	init_game(rooms[:])
+
+	// create an inventory
+	const inventory_size = 3
+	var inventory [inventory_size]string
+	inventory[0] = "Coffee"
+	inventory[1] = "Cream"
+
+	exp := 1
+	act := play(current_player, rooms[:], inventory[:], user_input)
+
+	if exp == act.win_status {
+		t.Fatalf("Expected %d got %d", exp, act.win_status)
 	}
 }
 

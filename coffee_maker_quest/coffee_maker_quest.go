@@ -70,6 +70,7 @@ func display_commands() bool {
 
 /* INITIALIZE GAME */
 func init_game(array []Room) {
+	fmt.Printf("Coffee Maker Quest 2.0 (Golang Edition)\n")
 
 	for i := 0; i < len(array); i++ {
 		create_room(i, &array[i])
@@ -249,8 +250,45 @@ func drink(current_player Player, inventory []string) int {
 	return status
 }
 
-func play(current_player Player, rooms []Room, inventory []string, r *bufio.Reader) int {
-	return 1
+func play(current_player Player, rooms []Room, inventory []string, user_input string) Player {
+	// figure out what to do
+	if check_input(user_input) == false {
+		fmt.Println("What?")
+
+	} else {
+		switch user_input {
+		case "N": // MOVE NORTH
+			{
+				current_player.room_num = move_north(current_player.room_num, total_states)
+				fmt.Println(display_room(rooms[current_player.room_num]))
+			}
+		case "S": // MOVE SOUTH
+			{
+				current_player.room_num = move_south(current_player.room_num, total_states)
+				fmt.Println(display_room(rooms[current_player.room_num]))
+			}
+		case "L": // LOOK
+			{
+				search_room_for_coffee_items(rooms[current_player.room_num], inventory[:])
+			}
+		case "I": // CHECK INVENTORY
+			{
+				current_player.coffee_items = display_inventory(inventory[:])
+			}
+		case "H": // DISPLAY HELP
+			{
+				display_instructions()
+			}
+		case "D": // DRINK
+			{
+				current_player.win_status = drink(current_player, inventory[:])
+
+				current_player.keep_going = 0 // stop
+			}
+		}
+	}
+
+	return current_player
 }
 
 func Run() {
@@ -264,15 +302,12 @@ func Run() {
 	var rooms [total_states]Room
 	init_game(rooms[:])
 
-	fmt.Println("Player is: ", current_player)
-	fmt.Printf("Coffee Maker Quest 2.0 (Golang Edition)\n")
-
 	// the game needs an inventory of what the player has collected
 	var inventory [inventory_slots]string
 
 	for current_player.keep_going == 1 {
 		// always display the room
-		display_room(rooms[current_player.room_num])
+		fmt.Println(display_room(rooms[current_player.room_num]))
 
 		// always display the list of commands
 		display_commands()
@@ -282,40 +317,6 @@ func Run() {
 		user_input = strings.TrimSpace(strings.ToUpper(user_input))
 
 		// figure out what to do
-		if check_input(user_input) == false {
-			fmt.Println("What?")
-
-		} else {
-			switch user_input {
-			case "N": // MOVE NORTH
-				{
-					current_player.room_num = move_north(current_player.room_num, total_states)
-					fmt.Println(display_room(rooms[current_player.room_num]))
-				}
-			case "S": // MOVE SOUTH
-				{
-					current_player.room_num = move_south(current_player.room_num, total_states)
-					fmt.Println(display_room(rooms[current_player.room_num]))
-				}
-			case "L": // LOOK
-				{
-					search_room_for_coffee_items(rooms[current_player.room_num], inventory[:])
-				}
-			case "I": // CHECK INVENTORY
-				{
-					current_player.coffee_items = display_inventory(inventory[:])
-				}
-			case "H": // DISPLAY HELP
-				{
-					display_instructions()
-				}
-			case "D": // DRINK
-				{
-					current_player.win_status = drink(current_player, inventory[:])
-
-					current_player.keep_going = 0 // stop
-				}
-			}
-		}
+		current_player = play(current_player, rooms[:], inventory[:], user_input)
 	}
 }
