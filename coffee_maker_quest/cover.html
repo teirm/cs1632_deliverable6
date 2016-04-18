@@ -1,0 +1,415 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<style>
+			body {
+				background: black;
+				color: rgb(80, 80, 80);
+			}
+			body, pre, #legend span {
+				font-family: Menlo, monospace;
+				font-weight: bold;
+			}
+			#topbar {
+				background: black;
+				position: fixed;
+				top: 0; left: 0; right: 0;
+				height: 42px;
+				border-bottom: 1px solid rgb(80, 80, 80);
+			}
+			#content {
+				margin-top: 50px;
+			}
+			#nav, #legend {
+				float: left;
+				margin-left: 10px;
+			}
+			#legend {
+				margin-top: 12px;
+			}
+			#nav {
+				margin-top: 10px;
+			}
+			#legend span {
+				margin: 0 5px;
+			}
+			.cov0 { color: rgb(192, 0, 0) }
+.cov1 { color: rgb(128, 128, 128) }
+.cov2 { color: rgb(116, 140, 131) }
+.cov3 { color: rgb(104, 152, 134) }
+.cov4 { color: rgb(92, 164, 137) }
+.cov5 { color: rgb(80, 176, 140) }
+.cov6 { color: rgb(68, 188, 143) }
+.cov7 { color: rgb(56, 200, 146) }
+.cov8 { color: rgb(44, 212, 149) }
+.cov9 { color: rgb(32, 224, 152) }
+.cov10 { color: rgb(20, 236, 155) }
+
+		</style>
+	</head>
+	<body>
+		<div id="topbar">
+			<div id="nav">
+				<select id="files">
+				
+				<option value="file0">github.com/teirm/cs1632_deliverable6/coffee_maker_quest/coffee_maker_quest.go (62.1%)</option>
+				
+				</select>
+			</div>
+			<div id="legend">
+				<span>not tracked</span>
+			
+				<span class="cov0">not covered</span>
+				<span class="cov8">covered</span>
+			
+			</div>
+		</div>
+		<div id="content">
+		
+		<pre class="file" id="file0" style="display: none">package coffee_maker_quest
+
+import (
+        "bufio"
+        "fmt"
+        "os"
+        "strings"
+)
+
+/* Structs */
+type Room struct {
+        north_door string
+        south_door string
+        furniture  string
+        item       string
+        room_adj   string
+}
+
+type Player struct {
+        room         int
+        win_status   int
+        coffee_items int
+        keep_going   int
+}
+
+/* Constants */
+const delim = '\n'        //For reading only single lines
+const total_states = 6    //Total number of rooms in game
+const inventory_slots = 3 //Total number of inventory slots
+
+/* MOVES THE PLAYER ONE ROOM NORTH (IF POSSIBRU) */
+func move_north(cur_pos int, total_states int) int <span class="cov8" title="1">{
+        next_pos := cur_pos + 1
+
+        if next_pos &lt; total_states </span><span class="cov8" title="1">{
+                return next_pos
+        }</span><span class="cov8" title="1"> else {
+                return cur_pos
+        }</span>
+}
+
+/* MOVES THE PLAYER ONE ROOM SOUTH (IF POSSIBRU) */
+func move_south(cur_pos int, total_states int) int <span class="cov8" title="1">{
+        next_pos := cur_pos - 1
+
+        if next_pos &gt;= 0 </span><span class="cov8" title="1">{
+                return next_pos
+        }</span><span class="cov8" title="1"> else {
+                return cur_pos
+        }</span>
+}
+
+/* PROCESSES BAG TO DETERMINE WIN/LOSS */
+func process_bag(coffee_items int) int <span class="cov8" title="1">{
+
+        if coffee_items == 7 </span><span class="cov8" title="1">{
+                return 1
+        }</span><span class="cov8" title="1"> else if coffee_items == 0 </span><span class="cov8" title="1">{
+                return 0
+        }</span><span class="cov8" title="1"> else {
+                return -1
+        }</span>
+}
+
+/* DISPLAYS INSTRUCTIONS */
+func display_commands() bool <span class="cov8" title="1">{
+        fmt.Printf("\n INSTRUCTIONS (N, S, L, I, H, D) &gt;\n")
+        return true
+}</span>
+
+/* INITIALIZE GAME */
+func init_game(array []Room) <span class="cov8" title="1">{
+
+        for i := 0; i &lt; len(array); i++ </span><span class="cov8" title="1">{
+                create_room(i, &amp;array[i])
+        }</span>
+}
+
+/* CREATE ROOMS */
+func create_room(room_pos int, room *Room) int <span class="cov8" title="1">{
+
+        adj_furn_array := [...]string{"Small", "Quaint sofa", "Magenta", "NONE",
+                "Funny", "Sad record player", "Beige", "Massive",
+                "Refinanced", "Tight pizza", "Dead", "Smart",
+                "Dumb", "Flat energy drink", "Vivacious", "Slim",
+                "Bloodthirsty", "Beautiful bag of money", "Purple", "Sandy",
+                "Rough", "Perfect air hockey table", "NONE", "Minimalist"}
+
+        index := room_pos * 4
+
+        if room_pos == 0 </span><span class="cov8" title="1">{
+                room.room_adj = adj_furn_array[index+0]
+                room.furniture = adj_furn_array[index+1]
+                room.north_door = adj_furn_array[index+2]
+                room.item = "Cream"
+        }</span><span class="cov8" title="1"> else if room_pos == total_states/2 </span><span class="cov8" title="1">{
+                room.room_adj = adj_furn_array[index+0]
+                room.furniture = adj_furn_array[index+1]
+                room.north_door = adj_furn_array[index+2]
+                room.south_door = adj_furn_array[index+3]
+                room.item = "Coffee"
+        }</span><span class="cov8" title="1"> else if room_pos == total_states-1 </span><span class="cov8" title="1">{
+                room.room_adj = adj_furn_array[index+0]
+                room.furniture = adj_furn_array[index+1]
+                room.south_door = adj_furn_array[index+3]
+                room.item = "Sugar"
+        }</span><span class="cov8" title="1"> else {
+                room.room_adj = adj_furn_array[index+0]
+                room.furniture = adj_furn_array[index+1]
+                room.north_door = adj_furn_array[index+2]
+                room.south_door = adj_furn_array[index+3]
+        }</span>
+
+        <span class="cov8" title="1">return 1</span>
+}
+
+/* CHECK USER INPUT */
+func check_input(in string) bool <span class="cov8" title="1">{
+
+        out := true
+
+        if !strings.EqualFold(in, "N") &amp;&amp; !strings.EqualFold(in, "S") &amp;&amp;
+                !strings.EqualFold(in, "L") &amp;&amp; !strings.EqualFold(in, "I") &amp;&amp;
+                !strings.EqualFold(in, "H") &amp;&amp; !strings.EqualFold(in, "D") </span><span class="cov8" title="1">{
+                out = false
+        }</span>
+
+        <span class="cov8" title="1">return out</span>
+
+}
+
+/* DISPLAY INSTRUCTIONS */
+func display_instructions() int <span class="cov8" title="1">{
+
+        fmt.Printf("Instructions for Coffee Maker Quest -\n" +
+                "You are a brave student trying to study for finals, but you need caffeine.\n" +
+                "The goal of the game is to collect sugar, coffee, and cream so that you can study.\n")
+
+        return 1
+}</span>
+
+/* DISPLAY INVENTORY */
+func display_inventory(inventory []string) int <span class="cov8" title="1">{
+
+        has_coffee := 0x000
+        has_cream := 0x000
+        has_sugar := 0x000
+
+        for i := 0; i &lt; len(inventory); i++ </span><span class="cov8" title="1">{
+                if strings.EqualFold(inventory[i], "Coffee") </span><span class="cov8" title="1">{
+                        has_coffee = 1
+                        fmt.Printf("You have a cup of delicious coffee.\n")
+                        break</span>
+                }
+        }
+
+        <span class="cov8" title="1">if has_coffee == 0 </span><span class="cov8" title="1">{
+                fmt.Printf("YOU HAVE NO COFFEE!\n")
+        }</span>
+
+        <span class="cov8" title="1">for i := 0; i &lt; len(inventory); i++ </span><span class="cov8" title="1">{
+                if strings.EqualFold(inventory[i], "Cream") </span><span class="cov8" title="1">{
+                        has_cream = 2
+                        fmt.Printf("You have some fresh cream.\n")
+                        break</span>
+                }
+        }
+
+        <span class="cov8" title="1">if has_cream == 0 </span><span class="cov8" title="1">{
+                fmt.Printf("YOU HAVE NO CREAM!\n")
+        }</span>
+
+        <span class="cov8" title="1">for i := 0; i &lt; len(inventory); i++ </span><span class="cov8" title="1">{
+                if strings.EqualFold(inventory[i], "Sugar") </span><span class="cov8" title="1">{
+                        has_sugar = 4
+                        fmt.Printf("You have some fresh sugar.\n")
+                }</span>
+        }
+
+        <span class="cov8" title="1">if has_sugar == 0 </span><span class="cov8" title="1">{
+                fmt.Printf("YOU HAVE NO SUGAR!\n")
+        }</span>
+
+        <span class="cov8" title="1">return has_coffee + has_cream + has_sugar</span>
+}
+
+/* DISPLAY ROOM DESCRIPTION */
+func display_room(room Room) string <span class="cov8" title="1">{
+        var description string = "\nYou see a " + room.room_adj + " room.\n"
+
+        // what kind of room
+
+        // what kind of item in the room
+        description += "It has a " + room.furniture + ".\n"
+
+        // door leading north (if any)
+        if room.north_door != "" </span><span class="cov8" title="1">{
+                description += "A " + room.north_door + " door leads North.\n"
+        }</span>
+
+        // door leading south (if any)
+        <span class="cov8" title="1">if room.south_door != "" </span><span class="cov8" title="1">{
+                description += "A " + room.south_door + " door leads South.\n"
+        }</span>
+
+        <span class="cov8" title="1">return description</span>
+}
+
+func Run() <span class="cov0" title="0">{
+        /* Create a reader for user input*/
+        r := bufio.NewReader(os.Stdin)
+        //s := bufio.NewScanner(os.Stdin)
+        //var user_input string
+
+        /* Create current Player */
+        current_player := Player{0, 0, 0, 1}
+
+        /* Create array of rooms for traversal */
+        var rooms [total_states]Room
+        init_game(rooms[:])
+
+        fmt.Println("Player is: ", current_player)
+        fmt.Printf("Coffee Maker Quest 2.0 (Golang Edition)\n")
+
+        // the game needs an inventory of what the player has collected
+        //var inventory Inventory
+        var inventory [inventory_slots]string
+
+        for current_player.keep_going == 1 </span><span class="cov0" title="0">{
+                // always display the room
+                display_room(rooms[current_player.room])
+
+                // always display the list of commands
+                display_commands()
+
+                // get user input (normalized)
+                user_input, _ := r.ReadString(delim)
+                user_input = strings.TrimSpace(strings.ToUpper(user_input))
+
+                // figure out what to do
+                if check_input(user_input) == false </span><span class="cov0" title="0">{
+                        fmt.Println("What?")
+
+                }</span><span class="cov0" title="0"> else {
+                        switch user_input </span>{
+                        <span class="cov0" title="0">case "N":
+                                </span><span class="cov0" title="0">{ // MOVE NORTH
+                                        current_player.room = move_north(current_player.room, total_states)
+                                        fmt.Println(display_room(rooms[current_player.room]))
+                                }</span>
+                        <span class="cov0" title="0">case "S":
+                                </span><span class="cov0" title="0">{ // MOVE SOUTH
+                                        current_player.room = move_south(current_player.room, total_states)
+                                        fmt.Println(display_room(rooms[current_player.room]))
+                                }</span>
+                        <span class="cov0" title="0">case "L":
+                                </span><span class="cov0" title="0">{ // LOOK
+                                        fmt.Println("Searching room")
+
+                                        // get any coffee items in the room (if exist)
+                                        switch rooms[current_player.room].item </span>{
+                                        <span class="cov0" title="0">case "Coffee", "Cream", "Sugar":
+                                                </span><span class="cov0" title="0">{
+                                                        fmt.Println("There might be something here...")
+                                                        fmt.Println("You found some", rooms[current_player.room].item)
+
+                                                        switch rooms[current_player.room].item </span>{
+                                                        <span class="cov0" title="0">case "Coffee":
+                                                                </span><span class="cov0" title="0">{
+                                                                        inventory[0] = "Coffee"
+                                                                }</span>
+                                                        <span class="cov0" title="0">case "Cream":
+                                                                </span><span class="cov0" title="0">{
+                                                                        inventory[1] = "Cream"
+                                                                }</span>
+                                                        <span class="cov0" title="0">case "Sugar":
+                                                                </span><span class="cov0" title="0">{
+                                                                        inventory[2] = "Sugar"
+                                                                }</span>
+                                                        }
+                                                }
+                                        <span class="cov0" title="0">default:
+                                                </span><span class="cov0" title="0">{
+                                                        fmt.Println("You don't see anything out of the ordinary.")
+                                                }</span>
+                                        }
+                                }
+                        <span class="cov0" title="0">case "I":
+                                </span><span class="cov0" title="0">{ // CHECK INVENTORY
+                                        current_player.coffee_items = display_inventory(inventory[:])
+                                }</span>
+                        <span class="cov0" title="0">case "H":
+                                </span><span class="cov0" title="0">{ // DISPLAY HELP
+                                        display_instructions()
+                                }</span>
+                        <span class="cov0" title="0">case "D":
+                                </span><span class="cov0" title="0">{ // DRINK
+                                        current_player.coffee_items = display_inventory(inventory[:])
+                                        current_player.win_status = process_bag(current_player.coffee_items)
+
+                                        if current_player.win_status == 1 </span><span class="cov0" title="0">{
+                                                fmt.Println("\nYou Win!")
+                                        }</span><span class="cov0" title="0"> else {
+                                                fmt.Println("\nYou Lose!")
+                                        }</span>
+
+                                        // stop
+                                        <span class="cov0" title="0">current_player.keep_going = 0</span>
+                                }
+                        }
+                }
+        }
+}
+</pre>
+		
+		</div>
+	</body>
+	<script>
+	(function() {
+		var files = document.getElementById('files');
+		var visible;
+		files.addEventListener('change', onChange, false);
+		function select(part) {
+			if (visible)
+				visible.style.display = 'none';
+			visible = document.getElementById(part);
+			if (!visible)
+				return;
+			files.value = part;
+			visible.style.display = 'block';
+			location.hash = part;
+		}
+		function onChange() {
+			select(files.value);
+			window.scrollTo(0, 0);
+		}
+		if (location.hash != "") {
+			select(location.hash.substr(1));
+		}
+		if (!visible) {
+			select("file0");
+		}
+	})();
+	</script>
+</html>
