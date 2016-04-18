@@ -9,8 +9,10 @@ package coffee_maker_quest
 
 /* Testing imports */
 import (
+	"bufio"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
+	"os"
 	"strings"
 	"testing"
 )
@@ -561,6 +563,9 @@ func Test_drink_missing_items(t *testing.T) {
 
 /* Test play function to continue */
 func Test_play_continue(t *testing.T) {
+	// create a reader for user input
+	r := bufio.NewReader(os.Stdin)
+
 	// create a player
 	current_player := Player{0, 0, 0, 1}
 
@@ -574,7 +579,7 @@ func Test_play_continue(t *testing.T) {
 	var inventory [inventory_size]string
 
 	exp := 1
-	act := play(current_player, rooms[:], inventory[:])
+	act := play(current_player, rooms[:], inventory[:], r)
 
 	if exp != act {
 		t.Fatalf("Expected %d got %d", exp, act)
@@ -583,6 +588,9 @@ func Test_play_continue(t *testing.T) {
 
 /* Test play function to end */
 func Test_play_end(t *testing.T) {
+	// create a reader for user input
+	r := bufio.NewReader(os.Stdin)
+
 	// create a player
 	current_player := Player{0, 0, 0, 1}
 
@@ -596,7 +604,7 @@ func Test_play_end(t *testing.T) {
 	var inventory [inventory_size]string
 
 	exp := 0
-	act := play(current_player, rooms[:], inventory[:])
+	act := play(current_player, rooms[:], inventory[:], r)
 
 	if exp != act {
 		t.Fatalf("Expected %d got %d", exp, act)

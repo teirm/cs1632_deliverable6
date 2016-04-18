@@ -249,7 +249,7 @@ func drink(current_player Player, inventory []string) int {
 	return status
 }
 
-func play(current_player Player, rooms []Room, inventory []string) int {
+func play(current_player Player, rooms []Room, inventory []string, r *bufio.Reader) int {
 	return 1
 }
 
