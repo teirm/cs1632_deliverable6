@@ -4,7 +4,7 @@
 	AUTHORS:
 
 	Cyrus Ramavarapu	(crr41@pitt.edu)
-	Joe Meszar			(jwm54@pitt.edu)
+	Joe Meszar		(jwm54@pitt.edu)
 */
 
 /*
@@ -14,8 +14,8 @@
 	Commit green
 	Commit Refactor
 
-
 	Creating code coverage:
+	via SO (http://stackoverflow.com/a/18911602)
 
 	1) go test -coverprofile cover.out
 	2) go tool cover -html=cover.out -o cover.html
